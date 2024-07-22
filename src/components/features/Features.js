@@ -27,7 +27,7 @@ const Features = () => {
           icon={<FaMobile />}
         />
         </a>
-        <a href='https://github.com/M-Muntazer-Mehdi/Software-Architecture-Hub/blob/main/README.md.md' target="_blank" rel="noopener noreferrer" className="card-link">
+        <a href='https://github.com/M-Muntazer-Mehdi/Software-Architecture-Hub/blob/main/README.md' target="_blank" rel="noopener noreferrer" className="card-link">
         <Card
           title="Software Architect"
           des="Proficient in MVC, Layered Architecture, Design Patterns, SOLID Principles, and Unit Testing, I deliver robust solutions that ensure scalability, security, and high performance, while adhering to industry best practices and standards."
