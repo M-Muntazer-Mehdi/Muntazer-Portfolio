@@ -26,9 +26,9 @@ const LeftBanner = () => {
             cursorColor="#ff014f"
           />
         </h2>
-        <p className="text-base font-roboto leading-6 tracking-wide text-justify">
-          I am a full stack software developer with expertise in front-end and back-end development, complemented by extensive experience leading cross-functional teams to deliver impactful solutions.<br />
-           Beyond Coding, my enthusiasm for immersive, story-driven e-sports games sharpens my problem-solving skills and creativity through engaging narratives and complex challenges. Additionally, my passion for fashion drives me to craft a personal style that reflects my individuality and creativity.
+        <p className="text-base font-arial leading-6 text-justify" style={{ fontSize: '15px' }}>
+        I am a full stack software developer with deep expertise in front-end and back-end development and a proven track record in leading cross-functional teams. My experience has evolved into a role as a Software Architect, where I design scalable, high-performance systems aligned with business goals. <br /> 
+        In addition to my technical skills, I am passionate about immersive, story-driven e-sports games, which enhance my problem-solving abilities and foster creativity through complex narratives and challenges. My dedication to fashion further drives me to develop a distinctive personal style that reflects both my individuality and creative vision.
         </p>
       </div>
       <div className="flex flex-col xl:flex-row gap-6 lgl:gap-0 justify-between" 
