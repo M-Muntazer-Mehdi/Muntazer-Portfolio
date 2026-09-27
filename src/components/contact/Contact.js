@@ -11,7 +11,7 @@ const ease = [0.22, 0.61, 0.36, 1];
 /* EmailJS identifiers are browser credentials, public by design. What stops
    anyone else sending through this template is the allowed-origins list in the
    EmailJS dashboard, which must name muntazermehdi.com once deployed. */
-const EMAILJS = { service: "service_lyvbr0m", template: "template_phpruhe", publicKey: "qhskEOYPU3vOzuddR" };
+const EMAILJS = { service: "service_whzs729", template: "template_phpruhe", publicKey: "MvDG1lVRxtG2wyOSC" };
 const EMAIL = "muntazer.mehdi.rizvi@gmail.com";
 
 const SOCIAL = [
