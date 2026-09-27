@@ -1,28 +1,38 @@
 import React from "react";
-import Banner from "./components/banner/Banner";
-import Contact from "./components/contact/Contact";
-import Features from "./components/features/Features";
-import FooterBottom from "./components/footer/FooterBottom";
+
+import { AppProvider } from "./context/AppContext";
+import Grain from "./components/ui/Grain";
 import Navbar from "./components/navbar/Navbar";
-import Projects from "./components/projects/Projects";
-import Resume from "./components/resume/Resume";
+import Hero from "./components/hero/Hero";
+import SelectedWork from "./components/work/SelectedWork";
+import Experience from "./components/experience/Experience";
+import EngineeringSystem from "./components/system/EngineeringSystem";
+import Toolchain from "./components/system/Toolchain";
+import Education from "./components/system/Education";
+
+import Contact from "./components/contact/Contact";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
-
-    <div className="w-full h-auto bg-bodyColor text-lightText px-4">
-    <div>
+    <AppProvider>
+      <Grain />
+      <div className="min-h-screen bg-paper text-ink">
         <Navbar />
-    </div>
-      <div className="max-w-screen-xl mx-auto">
-        <Banner />
-        <Features />
-        <Projects />
-        <Resume />
-        <Contact />
-        <FooterBottom />
+        <main>
+          <Hero />
+          <SelectedWork />
+          <Experience />
+          <EngineeringSystem />
+          <Toolchain />
+          <Education />
+
+          <Contact />
+        </main>
+
+        <Footer />
       </div>
-  </div>
+    </AppProvider>
   );
 }
 

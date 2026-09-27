@@ -1,29 +1,168 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&family=JetBrains+Mono:wght@300..600&family=Caveat:wght@500..700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .bannerIcon{
-        @apply w-16 h-16 bg-black bg-opacity-25 text-gray-200 text-xl inline-flex items-center justify-center rounded-md shadow-shadowOne hover:bg-opacity-40 hover:-translate-y-1 transition-all hover:text-designColor cursor-pointer duration-300;
-    }
-    .resumeLi {
-    @apply w-full h-20 bg-black bg-opacity-25 text-xl text-gray-300 flex justify-center cursor-pointer hover:bg-opacity-40 duration-300 items-center border-[1px] rounded-none;
-         }
-.bgOpacity {
-@apply bg-black bg-opacity-40;
-                  }
-    .contactInput{
-        @apply w-full h-12 rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300
-    }
-.contactTextArea{
-    @apply w-full rounded-lg border-b-[1px] border-b-gray-600 bg-[#191b1e] text-lightText px-4 py-2 active:outline-none focus-visible:outline-designColor outline-none focus-visible:border-b-transparent duration-300 resize-none
-}
+/* ==========================================================================
+   Design tokens.
+   Two axes:  data-theme = light | dark      (paper + ink)
+              data-lens  = fullstack | web | mobile | ai   (accent)
+   Every accent below is contrast-checked against its own paper and surface.
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --paper:      #F7F7F5;
+  --surface:    #EEEEEA;
+  --raised:     #FFFFFF;
+
+  --ink:        #14171A;   /* 16.77 on paper */
+  --muted:      #585F66;   /*  6.04 on paper */
+  --faint:      #878E95;   /* hairlines and marks only, never body text */
+  --hair:       rgba(20, 23, 26, 0.13);
+  --hair-hard:  rgba(20, 23, 26, 0.26);
+
+  /* work plates — the scrim fuses a cover into its caption, so figures can be
+     set on the image without a panel behind them */
+  --plate-scrim-a: rgba(247, 247, 245, 0.97);
+  --plate-scrim-b: rgba(247, 247, 245, 0.72);
+  --plate-label:   #585F66;
+  --plate-rail:    rgba(20, 23, 26, 0.34);
+  --edge:       rgba(255, 255, 255, 0.90);  /* lit top edge of a raised plane */
+  --sheen:      rgba(255, 255, 255, 0.55);
+
+  --accent:      #0A6B4C;  /* 6.08 on paper, 5.61 on surface */
+  --accent-soft: rgba(10, 107, 76, 0.09);
+  --on-accent:   #FFFFFF;  /* 6.52 on accent */
+
+  --grain: 0.026;
+  --plate:
+    0 1px 1px rgba(20, 23, 26, 0.04),
+    0 8px 16px -8px rgba(20, 23, 26, 0.16),
+    0 28px 54px -28px rgba(20, 23, 26, 0.30);
 }
 
-.active {
-    color: white;
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper:      #090B0E;   /* cooler and deeper than a terminal black */
+  --surface:    #101318;
+  --raised:     #161A20;
+
+  --ink:        #E9ECEF;   /* 16.62 on paper */
+  --muted:      #8B949E;   /*  6.41 on paper */
+  --faint:      #5B636D;
+  --hair:       rgba(233, 236, 239, 0.12);
+  --hair-hard:  rgba(233, 236, 239, 0.24);
+
+  --plate-scrim-a: rgba(9, 11, 14, 0.96);
+  --plate-scrim-b: rgba(9, 11, 14, 0.68);
+  --plate-label:   #8B949E;
+  --plate-rail:    rgba(233, 236, 239, 0.30);
+  --edge:       rgba(255, 255, 255, 0.10);
+  --sheen:      rgba(255, 255, 255, 0.07);
+
+  --accent:      #35D3A0;  /* 10.30 on paper */
+  --accent-soft: rgba(53, 211, 160, 0.10);
+  --on-accent:   #06100C;
+
+  --grain: 0.050;
+  --plate:
+    0 1px 1px rgba(0, 0, 0, 0.5),
+    0 10px 20px -10px rgba(0, 0, 0, 0.7),
+    0 34px 60px -30px rgba(0, 0, 0, 0.9);
 }
-.scrollbar-hide::-webkit-scrollbar{
-    display: none;
+
+/* --- lens accents -------------------------------------------------------
+   Written with both attributes so specificity is explicit and order-proof. */
+
+[data-theme="light"][data-lens="web"]    { --accent:#1E5BB8; --accent-soft:rgba(30,91,184,.09); }
+[data-theme="light"][data-lens="mobile"] { --accent:#6238B5; --accent-soft:rgba(98,56,181,.09); }
+[data-theme="light"][data-lens="ai"]     { --accent:#8A5200; --accent-soft:rgba(138,82,0,.09); }
+
+[data-theme="dark"][data-lens="web"]     { --accent:#62A6FF; --accent-soft:rgba(98,166,255,.10); --on-accent:#04101F; }
+[data-theme="dark"][data-lens="mobile"]  { --accent:#BB9CFF; --accent-soft:rgba(187,156,255,.10); --on-accent:#120A20; }
+[data-theme="dark"][data-lens="ai"]      { --accent:#F2B45E; --accent-soft:rgba(242,180,94,.10); --on-accent:#190F03; }
+
+/* ========================================================================== */
+
+html {
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color .45s ease;
 }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  transition: background-color .45s ease, color .45s ease;
+}
+
+::selection { background: var(--accent); color: var(--on-accent); }
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@layer components {
+  /* the small uppercase mono label used all over the layout */
+  .tag {
+    @apply font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted;
+  }
+  .hair-t { border-top: 1px solid var(--hair); }
+  .hair-b { border-bottom: 1px solid var(--hair); }
+  .hair-l { border-left: 1px solid var(--hair); }
+  .hair-r { border-right: 1px solid var(--hair); }
+
+  /* Ledger dividers. Written by hand rather than with variants so the
+     2-column and 4-column rules can't be reordered by the build. */
+  .ledger > * { border-left: 1px solid var(--hair); padding-left: 1.5rem; }
+  .ledger > *:nth-child(2n + 1) { border-left: 0; padding-left: 0; }
+  @media (min-width: 768px) {
+    .ledger > *:nth-child(2n + 1) { border-left: 1px solid var(--hair); padding-left: 1.5rem; }
+    .ledger > *:first-child { border-left: 0; padding-left: 0; }
+  }
+  /* Status band: 1 col on phones, 2 on small, 4 from tablet up.
+     Dividers sit between columns only, never at the start of a row. */
+  .statusband > * { border-left: 0; padding-left: 0; }
+  @media (min-width: 500px) {
+    .statusband > * { border-left: 1px solid var(--hair); padding-left: 1.5rem; }
+    .statusband > *:nth-child(2n + 1) { border-left: 0; padding-left: 0; }
+  }
+  @media (min-width: 768px) {
+    .statusband > *:nth-child(2n + 1) { border-left: 1px solid var(--hair); padding-left: 1.5rem; }
+    .statusband > *:first-child { border-left: 0; padding-left: 0; }
+  }
+
+  /* legacy sections from the old template, kept on their original palette
+     until each one is rebuilt */
+  .legacy { background: #212428; color: #c4cfde; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+
+/* The plate rule draws itself in on hover. Inline styles read --rule, so the
+   hover lives here rather than fighting specificity in the component. */
+.plate { --rule: 0.16; }
+.plate:hover { --rule: 1; }
