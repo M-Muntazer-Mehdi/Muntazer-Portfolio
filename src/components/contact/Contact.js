@@ -79,7 +79,7 @@ const Contact = () => {
       .send(
         EMAILJS.service,
         EMAILJS.template,
-        { from_name: username, from_phone: phoneNumber, from_email: email, subject, message },
+        { from_name: username, from_phone: phoneNumber.trim() || "Not provided", from_email: email, subject, message },
         { publicKey: EMAILJS.publicKey }
       )
       .then(() => {
@@ -209,7 +209,7 @@ const Contact = () => {
                          style={inputStyle(errMsg === "Username is required!")} />
                 </div>
                 <div className="flex w-full flex-col gap-3 lgl:w-1/2">
-                  <Label>Phone number</Label>
+                  <Label>Phone number <span style={{ color: "var(--faint)" }}>(optional)</span></Label>
                   <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
                          className="h-12 w-full px-4 text-[14.5px] outline-none"
                          style={inputStyle(false)} />
