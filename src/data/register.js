@@ -10,7 +10,8 @@
    line says what the thing is, not what it was hoped to be. Years are the
    last commit on each repository. */
 
-export const REGISTER_NOTE = "Thirteen case studies above · six more below · twenty shipped in all";
+export const REGISTER_NOTE =
+  "Thirteen case studies above \u00b7 seven below \u00b7 twenty shipped products, plus the final year project";
 
 export const PROJECT_REGISTER = [
   {
@@ -54,5 +55,12 @@ export const PROJECT_REGISTER = [
     what: "Reporting dashboard over the shared capture database",
     client: "Feenix Limited",
     year: "2026",
+  },
+  {
+    n: "07",
+    name: "ShipEase",
+    what: "Freight logistics platform — web console, React Native app, API",
+    client: "Final year project",
+    year: "2024",
   },
 ];
