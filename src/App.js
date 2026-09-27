@@ -5,6 +5,7 @@ import Grain from "./components/ui/Grain";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import SelectedWork from "./components/work/SelectedWork";
+import ProjectRegister from "./components/work/ProjectRegister";
 import Experience from "./components/experience/Experience";
 import EngineeringSystem from "./components/system/EngineeringSystem";
 import Toolchain from "./components/system/Toolchain";
@@ -22,6 +23,7 @@ function App() {
         <main>
           <Hero />
           <SelectedWork />
+          <ProjectRegister />
           <Experience />
           <EngineeringSystem />
           <Toolchain />
