@@ -1,14 +1,18 @@
 /* Project register.
    ------------------------------------------------------------------
    The shipped work that does not carry a full case study on this page.
-   Thirteen case studies plus these six plus Bespoke — which lives inside
-   the Responsible With AI card rather than standing alone — is the twenty
-   the hero refers to. The count reconciles; nothing is padding.
 
    Descriptors are factual and deliberately flat. Several of these repos
    describe themselves more ambitiously than their code supports, so each
-   line says what the thing is, not what it was hoped to be. Years are the
-   last commit on each repository. */
+   line says what the thing is, not what it was hoped to be.
+
+   Years are when the work was done, not the last commit. Several of these
+   were pushed to a personal repository months after delivery, so their
+   commit dates understate them - do not re-derive the years from git.
+
+   Six of the seven are the shipped work behind the hero's twenty, counted
+   with the thirteen case studies and Bespoke, which lives inside the
+   Responsible With AI card. ShipEase predates that window. */
 
 export const REGISTER_NOTE =
   "Thirteen case studies above \u00b7 seven below \u00b7 twenty shipped across 2025 and 2026, plus earlier client work";
