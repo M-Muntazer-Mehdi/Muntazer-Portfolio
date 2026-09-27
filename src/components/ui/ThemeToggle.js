@@ -11,7 +11,7 @@ const ThemeToggle = () => {
       onClick={toggleTheme}
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
       title={dark ? "Light" : "Dark"}
-      className="relative grid h-9 w-9 place-items-center rounded-full text-muted transition-colors duration-200 hover:text-accent"
+      className="relative grid h-11 w-11 place-items-center rounded-full text-muted transition-colors duration-200 hover:text-accent"
       style={{ border: "1px solid var(--hair)" }}
     >
       <FiSun

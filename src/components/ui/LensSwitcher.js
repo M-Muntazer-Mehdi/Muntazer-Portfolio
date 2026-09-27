@@ -24,7 +24,7 @@ const LensSwitcher = ({ group = "desktop", className = "" }) => {
             role="tab"
             aria-selected={active}
             onClick={() => setLens(id)}
-            className="relative isolate rounded-full px-2.5 py-1.5 transition-colors duration-200 sml:px-3.5"
+            className="relative isolate flex min-h-[44px] items-center rounded-full px-3.5 py-1.5 transition-colors duration-200 mdl:min-h-0 mdl:px-3.5 mdl:py-2"
           >
             {active && (
               <motion.span
@@ -38,7 +38,7 @@ const LensSwitcher = ({ group = "desktop", className = "" }) => {
               />
             )}
             <span
-              className={`whitespace-nowrap font-mono text-[11.5px] uppercase tracking-[0.14em] ${
+              className={`whitespace-nowrap font-mono text-[12.5px] uppercase tracking-[0.14em] ${
                 active ? "text-accent" : "text-muted hover:text-ink"
               }`}
             >

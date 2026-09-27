@@ -26,7 +26,7 @@ const LocalTime = () => {
   if (!time) return null;
 
   return (
-    <span className="hidden font-mono text-[11.5px] uppercase tracking-[0.14em] text-muted lg:inline">
+    <span className="hidden font-mono text-[12.5px] uppercase tracking-[0.14em] text-muted lg:inline">
       AST {time}
     </span>
   );

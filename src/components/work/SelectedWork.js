@@ -78,7 +78,7 @@ const Frame = ({ item, view, n, active, onOpen }) => {
                   {st.v}
                 </span>
                 <span
-                  className="mt-1 block font-mono text-[11px] uppercase leading-none tracking-[0.15em]"
+                  className="mt-1 block font-mono text-[12.5px] uppercase leading-none tracking-[0.15em]"
                   style={{ color: "var(--plate-label)" }}
                 >
                   {st.k}
@@ -105,7 +105,7 @@ const Frame = ({ item, view, n, active, onOpen }) => {
 
         {item.status?.live && (
           <figcaption
-            className="absolute right-0 top-0 flex items-center gap-1.5 px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em]"
+            className="absolute right-0 top-0 flex items-center gap-1.5 px-2.5 py-1.5 font-mono text-[12.5px] uppercase tracking-[0.16em]"
             style={{
               background: "var(--paper)",
               color: "var(--accent)",
@@ -122,7 +122,7 @@ const Frame = ({ item, view, n, active, onOpen }) => {
       {/* caption — number, name, hook */}
       <div className="flex gap-3 pt-3.5">
         <span
-          className="shrink-0 pt-[3px] font-mono text-[11px] tabular-nums tracking-[0.1em] transition-colors"
+          className="shrink-0 pt-[3px] font-mono text-[12.5px] tabular-nums tracking-[0.1em] transition-colors"
           style={{ color: active ? "var(--accent)" : "var(--faint)" }}
         >
           {String(n + 1).padStart(2, "0")}
@@ -138,7 +138,7 @@ const Frame = ({ item, view, n, active, onOpen }) => {
               style={{ color: active ? "var(--accent)" : "var(--faint)" }}
             />
           </span>
-          <span className="mt-1 block text-[12.5px] leading-snug text-muted">{view.hook}</span>
+          <span className="mt-1 block text-[14px] leading-snug text-muted">{view.hook}</span>
         </span>
       </div>
 
@@ -186,7 +186,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-0 top-4 flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-ink"
+        className="absolute right-0 top-4 flex items-center gap-2 font-mono text-[12.5px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-ink"
       >
         Close <FiX />
       </button>
@@ -207,7 +207,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
           <h3 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,2.6rem)] font-semibold leading-[1.02] tracking-tighter2">
             {view.name}
           </h3>
-          <p className="mt-2.5 text-[13.5px] leading-relaxed">
+          <p className="mt-2.5 text-[14.5px] leading-relaxed">
             <span className="font-medium text-ink">{view.role}</span>
             <span className="text-faint"> · </span>
             <span className="text-muted">{view.client}</span>
@@ -222,7 +222,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
                 className="h-1.5 w-1.5 rounded-full"
                 style={{ background: view.status.live ? "var(--accent)" : "var(--faint)" }}
               />
-              <span className="font-mono text-[11px] uppercase tracking-[0.16em]"
+              <span className="font-mono text-[12.5px] uppercase tracking-[0.16em]"
                     style={{ color: view.status.live ? "var(--accent)" : "var(--muted)" }}>
                 {view.status.label}
               </span>
@@ -230,7 +230,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
 
             {view.links.map((l) => (
               <a key={l.href} href={l.href} target="_blank" rel="noreferrer"
-                 className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:text-accent"
+                 className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[12.5px] uppercase tracking-[0.16em] text-ink transition-colors hover:text-accent"
                  style={{ border: "1px solid var(--hair)" }}>
                 {l.label} <FiArrowUpRight />
               </a>
@@ -240,7 +240,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
           <div className="flex gap-6" style={{ borderBottom: "1px solid var(--hair)" }}>
             {["Overview", "What I built", "Stack"].map((t, i) => (
               <button key={t} type="button" onClick={() => setTab(i)}
-                      className="relative pb-3 font-mono text-[11.5px] uppercase tracking-[0.16em] transition-colors"
+                      className="relative pb-3 font-mono text-[12.5px] uppercase tracking-[0.16em] transition-colors"
                       style={{ color: tab === i ? "var(--accent)" : "var(--muted)" }}>
                 {t}
                 {tab === i && (
@@ -281,7 +281,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
                   <div className="mb-7 flex flex-wrap gap-x-5 gap-y-2">
                     {groups.map((g, i) => (
                       <button key={g.label} type="button" onClick={() => setGroup(i)}
-                              className="font-mono text-[11.5px] uppercase tracking-[0.16em] transition-colors"
+                              className="font-mono text-[12.5px] uppercase tracking-[0.16em] transition-colors"
                               style={{ color: group === i ? "var(--accent)" : "var(--faint)" }}>
                         {g.label}
                       </button>
@@ -291,12 +291,12 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
                 <ol className="space-y-6">
                   {steps.map((s, i) => (
                     <li key={s.label} className="grid grid-cols-[2.2rem_1fr] gap-x-2">
-                      <span className="pt-[3px] font-mono text-[11px] tabular-nums text-faint">
+                      <span className="pt-[3px] font-mono text-[12.5px] tabular-nums text-faint">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div>
                         <p className="tag mb-1.5">{s.label}</p>
-                        <p className="max-w-[62ch] text-[14px] leading-[1.7] text-muted text-pretty">{s.text}</p>
+                        <p className="max-w-[62ch] text-[15px] leading-[1.7] text-muted text-pretty">{s.text}</p>
                       </div>
                     </li>
                   ))}
@@ -308,20 +308,20 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
               <>
                 <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 mdl:grid-cols-3">
                   {view.stack.map((t) => (
-                    <li key={t} className="flex items-center gap-2.5 font-mono text-[12px] text-ink">
+                    <li key={t} className="flex items-center gap-2.5 font-mono text-[13px] text-ink">
                       <span aria-hidden="true" className="h-px w-2.5 shrink-0" style={{ background: "var(--accent)" }} />
                       {t}
                     </li>
                   ))}
                 </ul>
                 <p className="tag mt-8">Shape</p>
-                <p className="mt-2 font-mono text-[12px] leading-relaxed text-muted">
+                <p className="mt-2 font-mono text-[13px] leading-relaxed text-muted">
                   {view.layers.join("  →  ")}
                 </p>
                 {view.notes && (
                   <>
                     <p className="tag mt-7">{view.notes.label}</p>
-                    <p className="mt-2 font-mono text-[12px] leading-relaxed text-muted">{view.notes.value}</p>
+                    <p className="mt-2 font-mono text-[13px] leading-relaxed text-muted">{view.notes.value}</p>
                   </>
                 )}
               </>
@@ -393,7 +393,7 @@ const SelectedWork = () => {
         >
           <div className="lgl:col-span-5">
             <div className="mb-4 flex items-center gap-3">
-              <span className="font-mono text-[11px] text-accent">/</span>
+              <span className="font-mono text-[12.5px] text-accent">/</span>
               <span className="tag">What I do</span>
             </div>
             <h2 className="font-display text-[clamp(2rem,4.6vw,3.2rem)] font-semibold leading-[0.98] tracking-tighter2">
@@ -426,11 +426,11 @@ const SelectedWork = () => {
                 key={id}
                 type="button"
                 onClick={() => { setLens(id); setOpenId(forLens(id)[0]?.id ?? null); }}
-                className="relative shrink-0 py-5 font-mono text-[11px] uppercase tracking-[0.16em] transition-colors"
+                className="relative shrink-0 py-5 font-mono text-[12.5px] uppercase tracking-[0.16em] transition-colors"
                 style={{ color: on ? "var(--accent)" : "var(--muted)" }}
               >
                 {LENSES[id].tab}
-                <span className="ml-2 text-[11px] tabular-nums" style={{ color: "var(--faint)" }}>
+                <span className="ml-2 text-[12.5px] tabular-nums" style={{ color: "var(--faint)" }}>
                   {String(count).padStart(2, "0")}
                 </span>
                 {on && (
@@ -479,7 +479,7 @@ const SelectedWork = () => {
           })}
         </div>
 
-        <p className="pb-4 pt-14 text-[13px] text-muted">
+        <p className="pb-4 pt-14 text-[14.5px] text-muted">
           Selected from 20 products shipped across 2025 and 2026.
         </p>
       </div>

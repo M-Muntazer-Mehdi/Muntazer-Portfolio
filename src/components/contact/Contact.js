@@ -105,7 +105,7 @@ const Contact = () => {
         >
           <div className="lgl:col-span-5">
             <div className="mb-4 flex items-center gap-3">
-              <span className="font-mono text-[11px] text-accent">/</span>
+              <span className="font-mono text-[12.5px] text-accent">/</span>
               <span className="tag">Contact</span>
             </div>
             <h2 className="font-display text-[clamp(2rem,4.6vw,3.2rem)] font-semibold leading-[0.98] tracking-tighter2">
@@ -141,11 +141,11 @@ const Contact = () => {
                 M. Muntazer Mehdi
               </h3>
               <p className="text-[15px] text-muted">Full-Stack Developer</p>
-              <p className="text-[14px] leading-relaxed text-muted text-pretty">
+              <p className="text-[15px] leading-relaxed text-muted text-pretty">
                 I build products end to end — web, mobile and the AI systems around them —
                 and I answer my own email.
               </p>
-              <p className="flex flex-wrap items-center gap-x-2 text-[14px] text-muted">
+              <p className="flex flex-wrap items-center gap-x-2 text-[15px] text-muted">
                 Email:
                 <a href={`mailto:${EMAIL}`} className="break-all text-accent underline-offset-4 hover:underline">
                   {EMAIL}
@@ -163,7 +163,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="flex h-10 w-10 items-center justify-center text-[15px] text-muted transition-colors hover:text-accent"
+                    className="flex h-11 w-11 items-center justify-center text-[15px] text-muted transition-colors hover:text-accent"
                     style={{ border: "1px solid var(--hair-hard)" }}
                   >
                     {s.icon}
@@ -184,13 +184,13 @@ const Contact = () => {
           >
             <form className="flex w-full flex-col gap-4 py-2 lgl:gap-6 lgl:py-5" noValidate onSubmit={handleSend}>
               {errMsg && (
-                <p className="px-4 py-3 text-center text-[14px]"
+                <p className="px-4 py-3 text-center text-[15px]"
                    style={{ border: "1px solid var(--accent)", color: "var(--accent)" }}>
                   {errMsg}
                 </p>
               )}
               {successMsg && (
-                <p className="px-4 py-3 text-center text-[14px]"
+                <p className="px-4 py-3 text-center text-[15px]"
                    style={{ border: "1px solid var(--accent)", color: "var(--accent)" }}>
                   {successMsg}
                 </p>
@@ -238,7 +238,7 @@ const Contact = () => {
                      className="pointer-events-none absolute h-0 w-0 opacity-0" />
 
               <button type="submit" disabled={sending}
-                      className="h-12 w-full font-mono text-[11px] uppercase tracking-[0.16em] transition-colors disabled:opacity-60"
+                      className="h-12 w-full font-mono text-[12.5px] uppercase tracking-[0.16em] transition-colors disabled:opacity-60"
                       style={{ border: "1px solid var(--accent)", color: "var(--accent)" }}>
                 {sending ? "Sending" : "Send message"}
               </button>

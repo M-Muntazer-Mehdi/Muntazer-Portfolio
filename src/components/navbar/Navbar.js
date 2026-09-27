@@ -78,7 +78,7 @@ const Navbar = () => {
                   key={id}
                   href={`#${id}`}
                   onClick={goTo(id)}
-                  className="cursor-pointer text-[13.5px] text-muted transition-colors duration-200 hover:text-accent"
+                  className="cursor-pointer text-[14.5px] text-muted transition-colors duration-200 hover:text-accent"
                 >
                   {title}
                 </a>
@@ -91,7 +91,7 @@ const Navbar = () => {
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"
-              className="grid h-9 w-9 place-items-center rounded-full text-muted mdl:hidden"
+              className="grid h-11 w-11 place-items-center rounded-full text-muted mdl:hidden"
               style={{ border: "1px solid var(--hair)" }}
             >
               <FiMenu className="text-[16px]" />
@@ -130,7 +130,7 @@ const Navbar = () => {
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close menu"
-                className="grid h-9 w-9 place-items-center rounded-full text-muted"
+                className="grid h-11 w-11 place-items-center rounded-full text-muted"
                 style={{ border: "1px solid var(--hair)" }}
               >
                 <FiX />
@@ -145,7 +145,7 @@ const Navbar = () => {
                   onClick={(e) => { setOpen(false); goTo(id)(e); }}
                   className="hair-b flex cursor-pointer items-baseline gap-4 py-4 font-display text-2xl font-semibold tracking-tighter2 hover:text-accent"
                 >
-                  <span className="font-mono text-[11.5px] text-muted">
+                  <span className="font-mono text-[12.5px] text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {title}
@@ -174,7 +174,7 @@ const Navbar = () => {
                 ))}
                 <a
                   href={SOCIALS.email}
-                  className="flex h-10 items-center gap-1.5 rounded-full px-4 text-[13px] text-muted hover:text-accent"
+                  className="flex h-10 items-center gap-1.5 rounded-full px-4 text-[14.5px] text-muted hover:text-accent"
                   style={{ border: "1px solid var(--hair)" }}
                 >
                   Email <FiArrowUpRight />

@@ -51,7 +51,7 @@ const EngineeringSystem = () => (
       >
         <div className="lgl:col-span-5">
           <div className="mb-4 flex items-center gap-3">
-            <span className="font-mono text-[11px] text-accent">/</span>
+            <span className="font-mono text-[12.5px] text-accent">/</span>
             <span className="tag">Engineering system</span>
           </div>
           <h2 className="font-display text-[clamp(2rem,4.6vw,3.2rem)] font-semibold leading-[0.98] tracking-tighter2">
@@ -92,14 +92,14 @@ const EngineeringSystem = () => (
               {i < STAGES.length - 1 && (
                 <span
                   aria-hidden="true"
-                  className="absolute -right-1 top-[34px] hidden font-mono text-[11px] lgl:block"
+                  className="absolute -right-1 top-[34px] hidden font-mono text-[12.5px] lgl:block"
                   style={{ color: "var(--faint)" }}
                 >
                   →
                 </span>
               )}
 
-              <span className="font-mono text-[11px] tabular-nums tracking-[0.1em] text-faint">
+              <span className="font-mono text-[12.5px] tabular-nums tracking-[0.1em] text-faint">
                 {s.n}
               </span>
 
@@ -107,12 +107,12 @@ const EngineeringSystem = () => (
                 {s.title}
               </h3>
 
-              <p className="mt-2 max-w-[34ch] text-[13px] leading-[1.6] text-muted text-pretty">
+              <p className="mt-2 max-w-[34ch] text-[14.5px] leading-[1.6] text-muted text-pretty">
                 {s.text}
               </p>
 
               <p
-                className="mt-4 border-l pl-2.5 font-mono text-[11px] uppercase leading-relaxed tracking-[0.13em]"
+                className="mt-4 border-l pl-2.5 font-mono text-[12.5px] uppercase leading-relaxed tracking-[0.13em]"
                 style={{ borderColor: "var(--accent)", color: "var(--muted)" }}
               >
                 {s.cite}

@@ -28,7 +28,7 @@ const Toolchain = () => {
         >
           <div className="lgl:col-span-5">
             <div className="mb-4 flex items-center gap-3">
-              <span className="font-mono text-[11px] text-accent">/</span>
+              <span className="font-mono text-[12.5px] text-accent">/</span>
               <span className="tag">Toolchain</span>
             </div>
             <h2 className="font-display text-[clamp(2rem,4.6vw,3.2rem)] font-semibold leading-[0.98] tracking-tighter2">
@@ -58,7 +58,7 @@ const Toolchain = () => {
               style={{ borderBottom: "1px solid var(--hair)" }}
             >
               <div className="mb-5 flex items-baseline gap-2.5" style={{ borderBottom: "1px solid var(--hair)" }}>
-                <span className="pb-2 font-mono text-[11px] tabular-nums text-faint">
+                <span className="pb-2 font-mono text-[12.5px] tabular-nums text-faint">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="tag pb-2">{g.group}</span>
@@ -67,7 +67,7 @@ const Toolchain = () => {
                 {g.items.map((it) => (
                   <li key={it.name} className="flex items-baseline gap-3">
                     <span
-                      className="w-5 shrink-0 text-right font-mono text-[11px] tabular-nums"
+                      className="w-5 shrink-0 text-right font-mono text-[12.5px] tabular-nums"
                       style={{ color: "var(--accent)" }}
                     >
                       {it.n}
@@ -82,7 +82,7 @@ const Toolchain = () => {
                         style={{ width: `${Math.max(6, (it.n / peak) * 100)}%`, background: "var(--accent)" }}
                       />
                     </span>
-                    <span className="text-[13.5px] leading-snug text-ink">{it.name}</span>
+                    <span className="text-[14.5px] leading-snug text-ink">{it.name}</span>
                   </li>
                 ))}
               </ul>
@@ -99,10 +99,10 @@ const Toolchain = () => {
           className="flex flex-col gap-x-6 gap-y-2 py-6 sml:flex-row sml:items-baseline"
         >
           <p className="tag shrink-0">{FOUNDATIONS.label}</p>
-          <p className="flex-1 text-[13px] leading-relaxed text-muted">
+          <p className="flex-1 text-[14.5px] leading-relaxed text-muted">
             {FOUNDATIONS.items.join("  \u00b7  ")}
           </p>
-          <p className="shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+          <p className="shrink-0 font-mono text-[12.5px] uppercase tracking-[0.14em] text-faint">
             {FOUNDATIONS.note}
           </p>
         </motion.div>

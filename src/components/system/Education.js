@@ -18,7 +18,7 @@ const Education = () => (
       >
         <div className="lgl:col-span-5">
           <div className="mb-4 flex items-center gap-3">
-            <span className="font-mono text-[11px] text-accent">/</span>
+            <span className="font-mono text-[12.5px] text-accent">/</span>
             <span className="tag">2016 — 2024</span>
           </div>
           <h2 className="font-display text-[clamp(2rem,4.6vw,3.2rem)] font-semibold leading-[0.98] tracking-tighter2">
@@ -43,7 +43,7 @@ const Education = () => (
               return (
                 <span
                   key={year}
-                  className="absolute top-0 -translate-x-1/2 font-mono text-[11px] tabular-nums tracking-[0.1em] text-faint"
+                  className="absolute top-0 -translate-x-1/2 font-mono text-[12.5px] tabular-nums tracking-[0.1em] text-faint"
                   style={{ left: `${((year - EDUCATION.from) / SPAN) * 100}%` }}
                 >
                   {year}
@@ -80,7 +80,7 @@ const Education = () => (
                   />
 
                   <p
-                    className="pt-4 font-mono text-[11px] uppercase tracking-[0.15em]"
+                    className="pt-4 font-mono text-[12.5px] uppercase tracking-[0.15em]"
                     style={{ color: s.lead ? "var(--accent)" : "var(--faint)" }}
                   >
                     {s.from} — {s.to}
@@ -90,15 +90,15 @@ const Education = () => (
                   <h3 className="mt-2.5 font-display text-[1.15rem] font-semibold leading-tight tracking-tight">
                     {s.award}
                   </h3>
-                  <p className="mt-1.5 max-w-[30ch] text-[13px] leading-snug text-muted">{s.place}</p>
-                  {s.note && <p className="mt-1 text-[12.5px] leading-snug text-muted">{s.note}</p>}
+                  <p className="mt-1.5 max-w-[30ch] text-[14.5px] leading-snug text-muted">{s.place}</p>
+                  {s.note && <p className="mt-1 text-[14px] leading-snug text-muted">{s.note}</p>}
 
                   {s.mark && (
                     <p className="mt-4 border-l pl-2.5" style={{ borderColor: "var(--accent)" }}>
-                      <span className="block font-mono text-[11px] uppercase tracking-[0.15em] text-faint">
+                      <span className="block font-mono text-[12.5px] uppercase tracking-[0.15em] text-faint">
                         {s.mark.label}
                       </span>
-                      <span className="mt-0.5 block text-[12.5px] leading-snug text-ink">
+                      <span className="mt-0.5 block text-[14px] leading-snug text-ink">
                         {s.mark.value}
                       </span>
                     </p>
@@ -108,8 +108,8 @@ const Education = () => (
                     <ul className="mt-4 space-y-1.5">
                       {s.inside.map((t) => (
                         <li key={t.label} className="flex gap-2.5">
-                          <span className="shrink-0 font-mono text-[11px] tabular-nums text-accent">{t.year}</span>
-                          <span className="text-[12.5px] leading-snug text-muted">{t.label}</span>
+                          <span className="shrink-0 font-mono text-[12.5px] tabular-nums text-accent">{t.year}</span>
+                          <span className="text-[14px] leading-snug text-muted">{t.label}</span>
                         </li>
                       ))}
                     </ul>
@@ -127,7 +127,7 @@ const Education = () => (
               style={{ borderTop: `1px solid ${s.lead ? "var(--accent)" : "var(--hair-hard)"}` }}
             >
               <p
-                className="pt-4 font-mono text-[11px] uppercase tracking-[0.15em]"
+                className="pt-4 font-mono text-[12.5px] uppercase tracking-[0.15em]"
                 style={{ color: s.lead ? "var(--accent)" : "var(--faint)" }}
               >
                 {s.from} — {s.to}
@@ -136,21 +136,21 @@ const Education = () => (
               <h3 className="mt-2 font-display text-[1.1rem] font-semibold leading-tight tracking-tight">
                 {s.award}
               </h3>
-              <p className="mt-1 text-[13px] leading-snug text-muted">{s.place}</p>
+              <p className="mt-1 text-[14.5px] leading-snug text-muted">{s.place}</p>
               {s.mark && (
                 <p className="mt-3 border-l pl-2.5" style={{ borderColor: "var(--accent)" }}>
-                  <span className="block font-mono text-[11px] uppercase tracking-[0.15em] text-faint">
+                  <span className="block font-mono text-[12.5px] uppercase tracking-[0.15em] text-faint">
                     {s.mark.label}
                   </span>
-                  <span className="mt-0.5 block text-[12.5px] leading-snug text-ink">{s.mark.value}</span>
+                  <span className="mt-0.5 block text-[14px] leading-snug text-ink">{s.mark.value}</span>
                 </p>
               )}
               {s.inside && (
                 <ul className="mt-3 space-y-1.5">
                   {s.inside.map((t) => (
                     <li key={t.label} className="flex gap-2.5">
-                      <span className="shrink-0 font-mono text-[11px] tabular-nums text-accent">{t.year}</span>
-                      <span className="text-[12.5px] leading-snug text-muted">{t.label}</span>
+                      <span className="shrink-0 font-mono text-[12.5px] tabular-nums text-accent">{t.year}</span>
+                      <span className="text-[14px] leading-snug text-muted">{t.label}</span>
                     </li>
                   ))}
                 </ul>

@@ -21,7 +21,7 @@
 
   --ink:        #14171A;   /* 16.77 on paper */
   --muted:      #585F66;   /*  6.04 on paper */
-  --faint:      #878E95;   /* hairlines and marks only, never body text */
+  --faint:      #6B7280;   /*  4.51 on paper */
   --hair:       rgba(20, 23, 26, 0.13);
   --hair-hard:  rgba(20, 23, 26, 0.26);
 
@@ -53,8 +53,8 @@
   --raised:     #161A20;
 
   --ink:        #E9ECEF;   /* 16.62 on paper */
-  --muted:      #8B949E;   /*  6.41 on paper */
-  --faint:      #5B636D;
+  --muted:      #9CA3AF;   /*  7.76 on paper */
+  --faint:      #7D868F;   /*  5.33 on paper */
   --hair:       rgba(233, 236, 239, 0.12);
   --hair-hard:  rgba(233, 236, 239, 0.24);
 
@@ -114,7 +114,7 @@ body {
 @layer components {
   /* the small uppercase mono label used all over the layout */
   .tag {
-    @apply font-mono text-[11.5px] uppercase tracking-[0.16em] text-muted;
+    @apply font-mono text-[12.5px] uppercase tracking-[0.14em] text-muted;
   }
   .hair-t { border-top: 1px solid var(--hair); }
   .hair-b { border-bottom: 1px solid var(--hair); }

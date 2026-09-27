@@ -31,8 +31,8 @@ const Doc = ({ doc, i }) => {
         {/* the sheet */}
         <span className="relative block px-5 pb-8 pt-6" style={{ borderBottom: "1px solid var(--hair)" }}>
           <span className="flex items-start justify-between gap-3">
-            <span className="font-mono text-[11px] tabular-nums tracking-[0.1em] text-faint">{doc.n}</span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+            <span className="font-mono text-[12.5px] tabular-nums tracking-[0.1em] text-faint">{doc.n}</span>
+            <span className="font-mono text-[12.5px] uppercase tracking-[0.16em] text-muted">
               {doc.dated || "Undated"}
             </span>
           </span>
@@ -40,7 +40,7 @@ const Doc = ({ doc, i }) => {
           <span className="mt-6 block font-display text-[1.18rem] font-semibold leading-tight tracking-tight">
             {doc.org}
           </span>
-          <span className="mt-1.5 block text-[12.5px] leading-snug text-muted">{doc.kind}</span>
+          <span className="mt-1.5 block text-[14px] leading-snug text-muted">{doc.kind}</span>
 
           {/* signature line */}
           <span className="mt-7 block">
@@ -49,8 +49,8 @@ const Doc = ({ doc, i }) => {
               className="mb-2 block h-px w-16"
               style={{ background: "var(--hair-hard)" }}
             />
-            <span className="block text-[12.5px] leading-snug text-ink">{doc.issuer}</span>
-            <span className="block text-[11.5px] leading-snug text-muted">{doc.issuerRole}</span>
+            <span className="block text-[14px] leading-snug text-ink">{doc.issuer}</span>
+            <span className="block text-[12.5px] leading-snug text-muted">{doc.issuerRole}</span>
           </span>
 
           {/* measurement rail */}
@@ -67,9 +67,9 @@ const Doc = ({ doc, i }) => {
 
         {/* what it certifies + the action */}
         <span className="block px-5 py-4">
-          <span className="block text-[12.5px] leading-snug text-muted">{doc.certifies}</span>
+          <span className="block text-[14px] leading-snug text-muted">{doc.certifies}</span>
           <span
-            className="mt-3 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.16em]"
+            className="mt-3 flex items-center gap-1.5 font-mono text-[12.5px] uppercase tracking-[0.16em]"
             style={{ color: doc.file ? "var(--accent)" : "var(--faint)" }}
           >
             {doc.file ? (
@@ -82,7 +82,7 @@ const Doc = ({ doc, i }) => {
             )}
           </span>
           {doc.redacted && (
-            <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
+            <span className="mt-2 block font-mono text-[12.5px] uppercase tracking-[0.14em] text-faint">
               {doc.redacted}
             </span>
           )}
@@ -105,7 +105,7 @@ const Experience = () => (
       >
         <div className="lgl:col-span-5">
           <div className="mb-4 flex items-center gap-3">
-            <span className="font-mono text-[11px] text-accent">/</span>
+            <span className="font-mono text-[12.5px] text-accent">/</span>
             <span className="tag">Experience</span>
           </div>
           <h2 className="font-display text-[clamp(2rem,4.6vw,3.2rem)] font-semibold leading-[0.98] tracking-tighter2">
@@ -137,7 +137,7 @@ const Experience = () => (
         {STATUS.map(({ k, v, lead }) => (
           <div key={k} className="py-5 pr-6">
             <dt className="tag mb-1.5">{k}</dt>
-            <dd className="text-[13.5px] leading-snug" style={{ color: lead ? "var(--accent)" : "var(--ink)" }}>
+            <dd className="text-[14.5px] leading-snug" style={{ color: lead ? "var(--accent)" : "var(--ink)" }}>
               {v}
             </dd>
           </div>
@@ -172,7 +172,7 @@ const Experience = () => (
                   <span className="h-1.5 w-1.5 animate-pulseDot rounded-full" style={{ background: "var(--accent)" }} />
                 )}
                 <span
-                  className="font-mono text-[11px] uppercase tracking-[0.13em]"
+                  className="font-mono text-[12.5px] uppercase tracking-[0.13em]"
                   style={{ color: r.current ? "var(--accent)" : "var(--muted)" }}
                 >
                   {r.period}
@@ -185,7 +185,7 @@ const Experience = () => (
                 {r.role}
                 {r.promoted && (
                   <span
-                    className="ml-2 inline-block translate-y-[-1px] px-1.5 py-0.5 align-middle font-mono text-[11px] uppercase tracking-[0.14em]"
+                    className="ml-2 inline-block translate-y-[-1px] px-1.5 py-0.5 align-middle font-mono text-[12.5px] uppercase tracking-[0.14em]"
                     style={{ color: "var(--accent)", border: "1px solid var(--accent)" }}
                   >
                     Promoted
@@ -195,8 +195,8 @@ const Experience = () => (
             </div>
 
             <div className="lgl:col-span-3">
-              <span className="block text-[13.5px] leading-snug text-ink">{r.org}</span>
-              <span className="block text-[12.5px] leading-snug text-muted">{r.orgNote}</span>
+              <span className="block text-[14.5px] leading-snug text-ink">{r.org}</span>
+              <span className="block text-[14px] leading-snug text-muted">{r.orgNote}</span>
             </div>
 
             <div className="lgl:col-span-2">
@@ -206,7 +206,7 @@ const Experience = () => (
                   {r.evidence.map((id) => {
                     const d = DOCUMENTS.find((x) => x.id === id);
                     return (
-                      <span key={id} className="font-mono text-[11.5px] tabular-nums tracking-[0.1em] text-muted">
+                      <span key={id} className="font-mono text-[12.5px] tabular-nums tracking-[0.1em] text-muted">
                         {d.n}
                       </span>
                     );

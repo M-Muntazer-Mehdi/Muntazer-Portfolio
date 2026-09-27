@@ -59,7 +59,7 @@ const Hero = () => {
                   style={{ background: "var(--accent)" }}
                 />
               </span>
-              <span className="font-mono text-[11.5px] uppercase tracking-[0.18em] text-accent">
+              <span className="font-mono text-[12.5px] uppercase tracking-[0.18em] text-accent">
                 In Saudi Arabia now — open to new roles
               </span>
             </div>
@@ -71,8 +71,8 @@ const Hero = () => {
               transition={{ duration: 0.5, ease }}
             >
               <div className="mb-5 flex items-center gap-3">
-                <span className="font-mono text-[11px] text-accent">{L.index}</span>
-                <span className="font-mono text-[11px] text-faint">/</span>
+                <span className="font-mono text-[12.5px] text-accent">{L.index}</span>
+                <span className="font-mono text-[12.5px] text-faint">/</span>
                 <span className="tag">{L.eyebrow}</span>
                 <span className="h-px flex-1" style={{ background: "var(--hair)" }} />
               </div>
@@ -98,7 +98,7 @@ const Hero = () => {
                 smooth
                 offset={-70}
                 duration={600}
-                className="group flex cursor-pointer items-center gap-2 rounded-full px-5 py-3 text-[13.5px] font-medium transition-transform duration-200 hover:-translate-y-0.5"
+                className="group flex cursor-pointer items-center gap-2 rounded-full px-5 py-3 text-[14.5px] font-medium transition-transform duration-200 hover:-translate-y-0.5"
                 style={{ background: "var(--accent)", color: "var(--on-accent)" }}
               >
                 See the work
@@ -107,7 +107,7 @@ const Hero = () => {
 
               <a
                 href={`${process.env.PUBLIC_URL}/Muntazer-Mehdi-CV.pdf`}
-                className="group flex items-center gap-2 rounded-full px-5 py-3 text-[13.5px] font-medium text-ink transition-colors duration-200 hover:text-accent"
+                className="group flex items-center gap-2 rounded-full px-5 py-3 text-[14.5px] font-medium text-ink transition-colors duration-200 hover:text-accent"
                 style={{ border: "1px solid var(--hair-hard)" }}
               >
                 Download CV
@@ -176,7 +176,7 @@ const Hero = () => {
           {LEDGER.map(({ k, v }) => (
             <div key={k} className="py-5 pr-6">
               <dt className="tag mb-1.5">{k}</dt>
-              <dd className="text-[13.5px] leading-snug text-ink">{v}</dd>
+              <dd className="text-[14.5px] leading-snug text-ink">{v}</dd>
             </div>
           ))}
         </dl>
@@ -194,12 +194,12 @@ const Hero = () => {
           {L.stack.map((s) => (
             <span
               key={s}
-              className="shrink-0 whitespace-nowrap font-mono text-[11.5px] tracking-tight text-muted"
+              className="shrink-0 whitespace-nowrap font-mono text-[12.5px] tracking-tight text-muted"
             >
               {s}
             </span>
           ))}
-          <span className="ml-auto hidden shrink-0 items-center gap-1.5 text-[11.5px] text-accent lg:flex">
+          <span className="ml-auto hidden shrink-0 items-center gap-1.5 text-[12.5px] text-accent lg:flex">
             {L.proof}
             <FiArrowUpRight />
           </span>
