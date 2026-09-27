@@ -11,7 +11,7 @@
    last commit on each repository. */
 
 export const REGISTER_NOTE =
-  "Thirteen case studies above \u00b7 seven below \u00b7 twenty shipped products, plus the final year project";
+  "Thirteen case studies above \u00b7 seven below \u00b7 twenty shipped across 2025 and 2026, plus earlier client work";
 
 export const PROJECT_REGISTER = [
   {
@@ -60,7 +60,7 @@ export const PROJECT_REGISTER = [
     n: "07",
     name: "ShipEase",
     what: "Freight logistics platform — web console, React Native app, API",
-    client: "Final year project",
+    client: "Toptal · also the final year project",
     year: "2024",
   },
 ];

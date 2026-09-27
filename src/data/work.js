@@ -718,7 +718,7 @@ export const WORK = [
     name: "Omnigen.AI",
     kicker: "Five AI generators in one dashboard",
     role: "Full-Stack Engineer",
-    client: "Personal project",
+    client: "Green Touch",
     lenses: ["ai"],
     status: { live: false, label: "Demo build" },
     links: [],
