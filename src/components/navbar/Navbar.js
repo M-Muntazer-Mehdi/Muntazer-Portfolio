@@ -67,7 +67,7 @@ const Navbar = () => {
           {/* the switch, centred on wide screens */}
           <LensSwitcher
             group="desktop"
-            className="hidden lgl:absolute lgl:left-1/2 lgl:flex lgl:-translate-x-1/2"
+            className="hidden xl:flex"
           />
 
           {/* right cluster */}
@@ -102,7 +102,7 @@ const Navbar = () => {
 
       {/* the switch gets its own row below the bar on narrow screens */}
       <div
-        className="backdrop-blur-md lgl:hidden"
+        className="backdrop-blur-md xl:hidden"
         style={{
           background: "color-mix(in srgb, var(--paper) 86%, transparent)",
           borderBottom: "1px solid var(--hair)",
