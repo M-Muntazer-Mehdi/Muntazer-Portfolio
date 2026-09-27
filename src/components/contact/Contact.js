@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 import { useApp } from "../../context/AppContext";
@@ -11,7 +11,7 @@ const ease = [0.22, 0.61, 0.36, 1];
 /* EmailJS identifiers are browser credentials, public by design. What stops
    anyone else sending through this template is the allowed-origins list in the
    EmailJS dashboard, which must name muntazermehdi.com once deployed. */
-const EMAILJS = { service: "service_lyvbr0m", template: "template_phpruhe", key: "qhskEOYPU3vOzuddR" };
+const EMAILJS = { service: "service_lyvbr0m", template: "template_phpruhe", publicKey: "qhskEOYPU3vOzuddR" };
 const EMAIL = "muntazer.mehdi.rizvi@gmail.com";
 
 const SOCIAL = [
@@ -80,13 +80,18 @@ const Contact = () => {
         EMAILJS.service,
         EMAILJS.template,
         { from_name: username, from_phone: phoneNumber, from_email: email, subject, message },
-        EMAILJS.key
+        { publicKey: EMAILJS.publicKey }
       )
       .then(() => {
         setSuccessMsg(`Thank you ${username}, your message has been sent. I'll reply from ${EMAIL}.`);
         setUsername(""); setPhoneNumber(""); setEmail(""); setSubject(""); setMessage("");
       })
-      .catch(() => setErrMsg("That did not send. Email me directly and it will reach me."))
+      .catch((err) => {
+        /* EmailJS rejects with {status, text}. Swallowing it left a failed send
+           with no way to tell a blocked origin from a bad template. */
+        console.error("EmailJS send failed:", err?.status, err?.text || err);
+        setErrMsg("That did not send. Email me directly and it will reach me.");
+      })
       .finally(() => setSending(false));
   };
 
