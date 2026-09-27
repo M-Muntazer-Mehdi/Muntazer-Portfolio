@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
@@ -8,6 +7,18 @@ import LensSwitcher from "../ui/LensSwitcher";
 import ThemeToggle from "../ui/ThemeToggle";
 import LocalTime from "../ui/LocalTime";
 import { NAV_LINKS, SOCIALS } from "../../data/lenses";
+
+
+/* react-scroll's <a> silently failed to resolve these targets, so every nav
+   item was inert. Native scrolling needs no registry and no dependency; the
+   sections carry scroll-margin so the sticky bar never covers a heading. */
+const goTo = (id) => (e) => {
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.history.replaceState(null, "", `#${id}`);
+};
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -39,11 +50,9 @@ const Navbar = () => {
       >
         <div className="relative mx-auto flex h-[68px] max-w-screen-xl items-center justify-between gap-4 px-5 lgl:px-8">
           {/* identity */}
-          <Link
-            to="home"
-            smooth
-            duration={500}
-            offset={-70}
+          <a
+            href="#home"
+            onClick={goTo("home")}
             className="group flex cursor-pointer items-center gap-3"
           >
             <Monogram />
@@ -53,7 +62,7 @@ const Navbar = () => {
               </span>
               <span className="tag block">Senior Full-Stack Engineer</span>
             </span>
-          </Link>
+          </a>
 
           {/* the switch, centred on wide screens */}
           <LensSwitcher
@@ -65,18 +74,14 @@ const Navbar = () => {
           <div className="flex items-center gap-2 mdl:gap-4">
             <nav className="hidden items-center gap-5 mdl:flex">
               {NAV_LINKS.map(({ id, title }) => (
-                <Link
+                <a
                   key={id}
-                  to={id}
-                  spy
-                  smooth
-                  offset={-70}
-                  duration={500}
-                  activeClass="!text-ink"
+                  href={`#${id}`}
+                  onClick={goTo(id)}
                   className="cursor-pointer text-[13.5px] text-muted transition-colors duration-200 hover:text-accent"
                 >
                   {title}
-                </Link>
+                </a>
               ))}
             </nav>
 
@@ -134,20 +139,17 @@ const Navbar = () => {
 
             <nav className="mt-10 flex flex-col">
               {NAV_LINKS.map(({ id, title }, i) => (
-                <Link
+                <a
                   key={id}
-                  to={id}
-                  smooth
-                  offset={-70}
-                  duration={500}
-                  onClick={() => setOpen(false)}
+                  href={`#${id}`}
+                  onClick={(e) => { setOpen(false); goTo(id)(e); }}
                   className="hair-b flex cursor-pointer items-baseline gap-4 py-4 font-display text-2xl font-semibold tracking-tighter2 hover:text-accent"
                 >
                   <span className="font-mono text-[10.5px] text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {title}
-                </Link>
+                </a>
               ))}
             </nav>
 

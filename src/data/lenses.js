@@ -81,9 +81,12 @@ export const SOCIALS = {
   email: "mailto:muntazer.mehdi.rizvi@gmail.com",
 };
 
+/* Every id here must exist as a <section id> — a nav item pointing at a
+   section that was removed simply does nothing when clicked. */
 export const NAV_LINKS = [
-  { id: "work",     title: "Work" },
-  { id: "projects", title: "Projects" },
+  { id: "work",       title: "Work" },
   { id: "experience", title: "Experience" },
-  { id: "contact",  title: "Contact" },
+  { id: "system",     title: "Approach" },
+  { id: "toolchain",  title: "Stack" },
+  { id: "contact",    title: "Contact" },
 ];

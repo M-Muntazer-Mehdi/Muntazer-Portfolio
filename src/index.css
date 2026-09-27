@@ -166,3 +166,7 @@ body {
    hover lives here rather than fighting specificity in the component. */
 .plate { --rule: 0.16; }
 .plate:hover { --rule: 1; }
+
+
+/* The navbar is sticky, so a section scrolled to the top would sit under it. */
+section[id] { scroll-margin-top: 88px; }
