@@ -78,7 +78,7 @@ const Frame = ({ item, view, n, active, onOpen }) => {
                   {st.v}
                 </span>
                 <span
-                  className="mt-1 block font-mono text-[9px] uppercase leading-none tracking-[0.15em]"
+                  className="mt-1 block font-mono text-[11px] uppercase leading-none tracking-[0.15em]"
                   style={{ color: "var(--plate-label)" }}
                 >
                   {st.k}
@@ -105,7 +105,7 @@ const Frame = ({ item, view, n, active, onOpen }) => {
 
         {item.status?.live && (
           <figcaption
-            className="absolute right-0 top-0 flex items-center gap-1.5 px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.16em]"
+            className="absolute right-0 top-0 flex items-center gap-1.5 px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em]"
             style={{
               background: "var(--paper)",
               color: "var(--accent)",
@@ -186,7 +186,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-0 top-4 flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-ink"
+        className="absolute right-0 top-4 flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-ink"
       >
         Close <FiX />
       </button>
@@ -222,7 +222,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
                 className="h-1.5 w-1.5 rounded-full"
                 style={{ background: view.status.live ? "var(--accent)" : "var(--faint)" }}
               />
-              <span className="font-mono text-[10px] uppercase tracking-[0.16em]"
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em]"
                     style={{ color: view.status.live ? "var(--accent)" : "var(--muted)" }}>
                 {view.status.label}
               </span>
@@ -230,7 +230,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
 
             {view.links.map((l) => (
               <a key={l.href} href={l.href} target="_blank" rel="noreferrer"
-                 className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink transition-colors hover:text-accent"
+                 className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:text-accent"
                  style={{ border: "1px solid var(--hair)" }}>
                 {l.label} <FiArrowUpRight />
               </a>
@@ -240,7 +240,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
           <div className="flex gap-6" style={{ borderBottom: "1px solid var(--hair)" }}>
             {["Overview", "What I built", "Stack"].map((t, i) => (
               <button key={t} type="button" onClick={() => setTab(i)}
-                      className="relative pb-3 font-mono text-[10.5px] uppercase tracking-[0.16em] transition-colors"
+                      className="relative pb-3 font-mono text-[11.5px] uppercase tracking-[0.16em] transition-colors"
                       style={{ color: tab === i ? "var(--accent)" : "var(--muted)" }}>
                 {t}
                 {tab === i && (
@@ -281,7 +281,7 @@ const Study = ({ item, view, lens, onClose, notchLeft }) => {
                   <div className="mb-7 flex flex-wrap gap-x-5 gap-y-2">
                     {groups.map((g, i) => (
                       <button key={g.label} type="button" onClick={() => setGroup(i)}
-                              className="font-mono text-[10.5px] uppercase tracking-[0.16em] transition-colors"
+                              className="font-mono text-[11.5px] uppercase tracking-[0.16em] transition-colors"
                               style={{ color: group === i ? "var(--accent)" : "var(--faint)" }}>
                         {g.label}
                       </button>
@@ -430,7 +430,7 @@ const SelectedWork = () => {
                 style={{ color: on ? "var(--accent)" : "var(--muted)" }}
               >
                 {LENSES[id].tab}
-                <span className="ml-2 text-[10px] tabular-nums" style={{ color: "var(--faint)" }}>
+                <span className="ml-2 text-[11px] tabular-nums" style={{ color: "var(--faint)" }}>
                   {String(count).padStart(2, "0")}
                 </span>
                 {on && (
@@ -479,7 +479,7 @@ const SelectedWork = () => {
           })}
         </div>
 
-        <p className="pb-4 pt-14 text-[13px] text-faint">
+        <p className="pb-4 pt-14 text-[13px] text-muted">
           Selected from 20 products shipped across 2025 and 2026.
         </p>
       </div>

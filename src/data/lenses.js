@@ -11,7 +11,7 @@ export const LENSES = {
     index: "01",
     tab: "Full Stack",
     label: "Full-Stack Engineering",
-    eyebrow: "Senior Full-Stack Engineer",
+    eyebrow: "Full-Stack Developer",
     headline: ["I ship the", "whole thing."],
     accentIndex: 1,
     sub: "App, API, database, and AI when the product needs it.",
@@ -69,7 +69,7 @@ export const LENSES = {
 
 /* Constant across lenses — this part is about the person, not the discipline. */
 export const LEDGER = [
-  { k: "Role",    v: "Senior Full-Stack Engineer" },
+  { k: "Role",    v: "Full-Stack Developer" },
   { k: "Now",     v: "Lead Developer, Skyline Digitals" },
   { k: "Client",  v: "Feenix Limited, United Kingdom" },
   { k: "Based",   v: "Madinah, Saudi Arabia" },

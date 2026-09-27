@@ -114,7 +114,7 @@ body {
 @layer components {
   /* the small uppercase mono label used all over the layout */
   .tag {
-    @apply font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted;
+    @apply font-mono text-[11.5px] uppercase tracking-[0.16em] text-muted;
   }
   .hair-t { border-top: 1px solid var(--hair); }
   .hair-b { border-bottom: 1px solid var(--hair); }

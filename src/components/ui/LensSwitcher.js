@@ -38,7 +38,7 @@ const LensSwitcher = ({ group = "desktop", className = "" }) => {
               />
             )}
             <span
-              className={`whitespace-nowrap font-mono text-[10.5px] uppercase tracking-[0.14em] ${
+              className={`whitespace-nowrap font-mono text-[11.5px] uppercase tracking-[0.14em] ${
                 active ? "text-accent" : "text-muted hover:text-ink"
               }`}
             >

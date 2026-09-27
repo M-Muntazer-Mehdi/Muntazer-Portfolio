@@ -59,7 +59,7 @@ const Hero = () => {
                   style={{ background: "var(--accent)" }}
                 />
               </span>
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-accent">
+              <span className="font-mono text-[11.5px] uppercase tracking-[0.18em] text-accent">
                 In Saudi Arabia now — open to new roles
               </span>
             </div>

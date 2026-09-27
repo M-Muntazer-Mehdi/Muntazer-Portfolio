@@ -112,7 +112,7 @@ const EngineeringSystem = () => (
               </p>
 
               <p
-                className="mt-4 border-l pl-2.5 font-mono text-[10px] uppercase leading-relaxed tracking-[0.13em]"
+                className="mt-4 border-l pl-2.5 font-mono text-[11px] uppercase leading-relaxed tracking-[0.13em]"
                 style={{ borderColor: "var(--accent)", color: "var(--muted)" }}
               >
                 {s.cite}

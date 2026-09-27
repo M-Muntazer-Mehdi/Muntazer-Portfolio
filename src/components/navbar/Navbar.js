@@ -60,7 +60,7 @@ const Navbar = () => {
               <span className="block font-display text-[15px] font-semibold tracking-tighter2">
                 Muntazer Mehdi
               </span>
-              <span className="tag block">Senior Full-Stack Engineer</span>
+              <span className="tag block">Full-Stack Developer</span>
             </span>
           </a>
 
@@ -145,7 +145,7 @@ const Navbar = () => {
                   onClick={(e) => { setOpen(false); goTo(id)(e); }}
                   className="hair-b flex cursor-pointer items-baseline gap-4 py-4 font-display text-2xl font-semibold tracking-tighter2 hover:text-accent"
                 >
-                  <span className="font-mono text-[10.5px] text-muted">
+                  <span className="font-mono text-[11.5px] text-muted">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {title}

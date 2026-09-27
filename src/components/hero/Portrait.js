@@ -9,7 +9,7 @@ import cutoutSrc from "../../assets/images/figure.png";
 const PLACE = "Madinah, Saudi Arabia";
 const TZ = "UTC+3";
 
-const capClass = "font-mono text-[10px] uppercase tracking-[0.16em]";
+const capClass = "font-mono text-[11px] uppercase tracking-[0.16em]";
 
 const scene = { perspective: "1250px" };
 const card = {

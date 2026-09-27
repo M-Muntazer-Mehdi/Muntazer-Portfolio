@@ -38,7 +38,7 @@ const Toolchain = () => {
           <div className="lgl:col-span-7 lgl:pt-2">
             <p className="max-w-[54ch] text-[15px] leading-[1.75] text-muted text-pretty">
               No ratings. The number beside each is how many of the case studies above
-              actually ship it \u2014 counted from every repository, not estimated.
+              actually ship it — counted from every repository, not estimated.
             </p>
           </div>
         </motion.div>
@@ -58,7 +58,7 @@ const Toolchain = () => {
               style={{ borderBottom: "1px solid var(--hair)" }}
             >
               <div className="mb-5 flex items-baseline gap-2.5" style={{ borderBottom: "1px solid var(--hair)" }}>
-                <span className="pb-2 font-mono text-[10px] tabular-nums text-faint">
+                <span className="pb-2 font-mono text-[11px] tabular-nums text-faint">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="tag pb-2">{g.group}</span>
@@ -102,7 +102,7 @@ const Toolchain = () => {
           <p className="flex-1 text-[13px] leading-relaxed text-muted">
             {FOUNDATIONS.items.join("  \u00b7  ")}
           </p>
-          <p className="shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+          <p className="shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
             {FOUNDATIONS.note}
           </p>
         </motion.div>

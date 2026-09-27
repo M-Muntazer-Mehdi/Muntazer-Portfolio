@@ -32,7 +32,7 @@ const Doc = ({ doc, i }) => {
         <span className="relative block px-5 pb-8 pt-6" style={{ borderBottom: "1px solid var(--hair)" }}>
           <span className="flex items-start justify-between gap-3">
             <span className="font-mono text-[11px] tabular-nums tracking-[0.1em] text-faint">{doc.n}</span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
+            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
               {doc.dated || "Undated"}
             </span>
           </span>
@@ -69,7 +69,7 @@ const Doc = ({ doc, i }) => {
         <span className="block px-5 py-4">
           <span className="block text-[12.5px] leading-snug text-muted">{doc.certifies}</span>
           <span
-            className="mt-3 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em]"
+            className="mt-3 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.16em]"
             style={{ color: doc.file ? "var(--accent)" : "var(--faint)" }}
           >
             {doc.file ? (
@@ -82,7 +82,7 @@ const Doc = ({ doc, i }) => {
             )}
           </span>
           {doc.redacted && (
-            <span className="mt-2 block font-mono text-[9.5px] uppercase tracking-[0.14em] text-faint">
+            <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
               {doc.redacted}
             </span>
           )}
@@ -185,7 +185,7 @@ const Experience = () => (
                 {r.role}
                 {r.promoted && (
                   <span
-                    className="ml-2 inline-block translate-y-[-1px] px-1.5 py-0.5 align-middle font-mono text-[9px] uppercase tracking-[0.14em]"
+                    className="ml-2 inline-block translate-y-[-1px] px-1.5 py-0.5 align-middle font-mono text-[11px] uppercase tracking-[0.14em]"
                     style={{ color: "var(--accent)", border: "1px solid var(--accent)" }}
                   >
                     Promoted
@@ -206,7 +206,7 @@ const Experience = () => (
                   {r.evidence.map((id) => {
                     const d = DOCUMENTS.find((x) => x.id === id);
                     return (
-                      <span key={id} className="font-mono text-[10.5px] tabular-nums tracking-[0.1em] text-muted">
+                      <span key={id} className="font-mono text-[11.5px] tabular-nums tracking-[0.1em] text-muted">
                         {d.n}
                       </span>
                     );

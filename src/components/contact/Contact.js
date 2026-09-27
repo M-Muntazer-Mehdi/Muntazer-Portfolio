@@ -140,7 +140,7 @@ const Contact = () => {
               <h3 className="font-display text-[1.7rem] font-semibold leading-tight tracking-tight">
                 M. Muntazer Mehdi
               </h3>
-              <p className="text-[15px] text-muted">Senior Full-Stack Engineer</p>
+              <p className="text-[15px] text-muted">Full-Stack Developer</p>
               <p className="text-[14px] leading-relaxed text-muted text-pretty">
                 I build products end to end — web, mobile and the AI systems around them —
                 and I answer my own email.
