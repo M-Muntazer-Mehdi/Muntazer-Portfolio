@@ -70,7 +70,7 @@ export const LENSES = {
 /* Constant across lenses — this part is about the person, not the discipline. */
 export const LEDGER = [
   { k: "Role",    v: "Full-Stack Developer" },
-  { k: "Now",     v: "Lead Developer, Skyline Digitals" },
+  { k: "Now",     v: "Lead Developer, Feenix Limited" },
   { k: "Client",  v: "Feenix Limited, United Kingdom" },
   { k: "Based",   v: "Madinah, Saudi Arabia" },
 ];

@@ -664,7 +664,7 @@ export const WORK = [
     name: "QUIZiALL",
     kicker: "Verified AI quiz engine",
     role: "Lead Developer",
-    client: "Skyline Digitals",
+    client: "Contract project",
     lenses: ["ai"],
     status: { live: true, label: "Engine production-ready" },
     links: [],
