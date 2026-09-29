@@ -137,14 +137,20 @@ const BootSequence = () => {
     <div
       aria-hidden="true"
       className="fixed inset-0 z-[120] flex flex-col items-center justify-center overflow-hidden"
-      style={{
-        /* the ground lifts before the portrait lands, so the flight
-           finishes over the real page rather than over a blank sheet */
-        background: "var(--paper)",
-        opacity: flying ? 0 : 1,
-        transition: `opacity ${Math.round(FLIGHT * 0.5)}ms ease`,
-      }}
     >
+      {/* The ground is its own layer. Fading the whole overlay would fade
+          the portrait with it, so the copy dissolved in mid-flight and the
+          real one only appeared on landing — which read as the hero image
+          arriving late. The portrait now stays fully opaque the whole way
+          and the paper lifts behind it. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "var(--paper)",
+          opacity: flying ? 0 : 1,
+          transition: `opacity ${Math.round(FLIGHT * 0.5)}ms ease`,
+        }}
+      />
       <Registration className="left-7 top-7" delay={40} gone={flying} />
       <Registration className="right-7 top-7" delay={90} gone={flying} />
       <Registration className="bottom-7 left-7" delay={140} gone={flying} />
