@@ -90,6 +90,7 @@ export const WORK = [
   {
     id: "roley",
     flagship: true,
+    lensRank: { ai: 2 },
     stats: [{ v: "7", k: "pipeline stages" }, { v: "5", k: "ranking signals" }],
     coverShape: "portrait",
     hook: "Seven-stage prompt pipeline behind a tool recommender",
@@ -306,7 +307,7 @@ export const WORK = [
   {
     id: "meetwise",
     flagship: false,
-    lensRank: { ai: 0 },   /* leads the AI lens */
+    lensRank: { ai: 0 },   /* AI lens runs Meetwise, QUIZiALL, Roley first */
     stats: [{ v: "4", k: "pipeline stages" }, { v: "2", k: "capture paths" }],
     hook: "Headless browser joins, Whisper and Gemini summarise",
     name: "Meetwise",
@@ -660,6 +661,7 @@ export const WORK = [
   {
     id: "quiziall",
     flagship: false,
+    lensRank: { ai: 1 },
     stats: [{ v: "688", k: "offline tests" }, { v: "0", k: "AI at play" }],
     hook: "Questions verified offline, never generated at play",
     name: "QUIZiALL",
