@@ -87,6 +87,9 @@ const BootSequence = () => {
     /* the sweep: one lens name per STEP, ending on the last */
     const sweep = order.map((_, i) => setTimeout(() => setStep(i), i * STEP));
 
+    /* set inside the flight, cleared with everything else on unmount */
+    let keep;
+
     const fly = setTimeout(() => {
       const img = imgRef.current;
       const from = img && img.getBoundingClientRect();
@@ -126,6 +129,12 @@ const BootSequence = () => {
             `transform ${FLIGHT}ms ${ease}, ` +
             `opacity ${Math.round(FLIGHT * 0.5)}ms ease ${Math.round(FLIGHT * 0.5)}ms`;
           img.style.opacity = "0";
+          /* the mark keeps the face from here on, so the flight ends in
+             something that stays rather than simply disappearing */
+          keep = setTimeout(
+            () => root.setAttribute("data-mark-portrait", ""),
+            Math.round(FLIGHT * 0.55)
+          );
         } else {
           img.style.transition = `transform ${FLIGHT}ms ${ease}`;
           /* the exact frame the copy comes to rest on the real one */
@@ -153,7 +162,7 @@ const BootSequence = () => {
     const end = setTimeout(() => setActive(false), DONE);
 
     return () => {
-      [...sweep, fly, handover, end].forEach(clearTimeout);
+      [...sweep, fly, handover, end, keep].forEach(clearTimeout);
       root.removeAttribute("data-booting");
       document.body.style.overflow = overflow;
     };

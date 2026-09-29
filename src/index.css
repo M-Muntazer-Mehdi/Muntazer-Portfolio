@@ -191,6 +191,22 @@ body {
 
 [data-booting] [data-hero-portrait] { opacity: 0; }
 
+/* The mark holds the face once the boot has delivered it there. Both
+   layers are always in the DOM so the frame never resizes; only which
+   one is painted changes, and it cross-fades rather than cutting. */
+.mm-mark-face {
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.mm-mark-strokes {
+  opacity: 1;
+  transition: opacity 320ms ease;
+}
+
+[data-mark-portrait] .mm-mark-face { opacity: 1; }
+[data-mark-portrait] .mm-mark-strokes { opacity: 0; }
+
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
