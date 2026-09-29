@@ -14,13 +14,19 @@
     <!-- Link previews. og:image must be an absolute URL: LinkedIn, WhatsApp and
          X fetch it from their own servers, where a relative path resolves to
          nothing. Dimensions are declared so the card reserves space before the
-         image arrives. -->
+         image arrives.
+
+         The filename carries a version because scrapers cache the image by
+         URL: replacing the bytes at a path they have already fetched changes
+         nothing on their side, and LinkedIn happily served a stale card next
+         to a freshly scraped title. Bump the number whenever the card
+         changes. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Muntazer Mehdi" />
     <meta property="og:url" content="https://muntazermehdi.com/" />
     <meta property="og:title" content="Muntazer Mehdi, Full-Stack Software Engineer" />
     <meta property="og:description" content="I design, build and ship complete products: web platforms, mobile apps, and the AI inside them. 20 products shipped across 2025 and 2026. In Saudi Arabia on a transferable visa, open to new roles." />
-    <meta property="og:image" content="https://muntazermehdi.com/og-image.png" />
+    <meta property="og:image" content="https://muntazermehdi.com/og-image-v2.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Muntazer Mehdi, Full-Stack Software Engineer. Based in Madinah, Saudi Arabia, on a transferable visa." />
@@ -29,7 +35,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Muntazer Mehdi, Full-Stack Software Engineer" />
     <meta name="twitter:description" content="I design, build and ship complete products: web platforms, mobile apps, and the AI inside them. 20 products shipped across 2025 and 2026. In Saudi Arabia on a transferable visa, open to new roles." />
-    <meta name="twitter:image" content="https://muntazermehdi.com/og-image.png" />
+    <meta name="twitter:image" content="https://muntazermehdi.com/og-image-v2.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
