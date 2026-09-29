@@ -177,7 +177,7 @@ export const WORK = [
         { label: "Admin and dispute operations", text: "A separate Next.js console on its own token audience, every mutating action audit-logged. Dossiers pull profile, documents, bookings and reliability into one view. A dispute case file assembles the complaint, both parties, the booking chat, evidence photos and location proximity." },
       ] },
     ],
-    stack: ["React Native 0.83", "React 19", "TypeScript", "NestJS", "TypeORM", "PostgreSQL", "Next.js 15", "Tailwind CSS", "TanStack Query", "Zustand", "Stripe", "Firebase", "Notifee", "AWS S3"],
+    stack: ["React Native 0.83", "React 19", "TypeScript", "NestJS", "TypeORM", "PostgreSQL", "Next.js 15", "Tailwind CSS", "TanStack Query", "Zustand", "Stripe", "Firebase", "Notifee", "AWS S3", "Railway"],
     notes: { label: "Database discipline", value: "synchronize: false \u00b7 schema changes through migrations" },
     layers: ["App + admin portal", "NestJS REST API", "PostgreSQL + Stripe"],
   },

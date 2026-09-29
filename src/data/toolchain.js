@@ -81,6 +81,7 @@ export const TOOLCHAIN = [
       { name: "GitHub Actions", n: 8 },
       { name: "Jest", n: 6 },
       { name: "Vercel", n: 4 },
+      { name: "Railway", n: 1 },
       { name: "AWS", n: 3 },
       { name: "Docker", n: 3 },
       { name: "Sentry", n: 1 },
