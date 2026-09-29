@@ -124,6 +124,7 @@ const Cutout = ({ lens }) => {
           <img
             src={cutoutSrc}
             alt="Muntazer Mehdi"
+            data-hero-portrait=""
             width={447}
             height={418}
             className="absolute bottom-[7.2%] left-1/2 w-[97%]"

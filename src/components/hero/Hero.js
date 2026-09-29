@@ -7,7 +7,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { useApp } from "../../context/AppContext";
 import { LENSES, LEDGER, SOCIALS } from "../../data/lenses";
 import Portrait from "./Portrait";
-import { BOOT_MS, bootWillRun } from "../../lib/boot";
+import { HERO_DELAY_MS, bootWillRun } from "../../lib/boot";
 
 const ease = [0.22, 0.61, 0.36, 1];
 
@@ -71,7 +71,7 @@ const Hero = () => {
             {/* Entrance is CSS, not JS: the resting state of every line is
                 visible, so a failed animation cannot swallow the headline.
                 `key` restarts the run when the lens changes. */}
-            <div key={lens} style={{ "--t0": `${firstPaint ? BOOT_MS / 1000 : 0}s` }}>
+            <div key={lens} style={{ "--t0": `${firstPaint ? HERO_DELAY_MS / 1000 : 0}s` }}>
               <div className="mb-5 flex items-center gap-3">
                 <span className="mm-in mm-fade font-mono text-[12.5px] text-accent" style={at(0)}>
                   {L.index}

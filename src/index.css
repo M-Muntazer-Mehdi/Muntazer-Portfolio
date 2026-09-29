@@ -175,20 +175,21 @@ body {
 @keyframes mm-fade { from { opacity: 0; transform: translateY(10px); } }
 @keyframes mm-rule { from { transform: scaleX(0); } }
 
-/* Stroke drawing for the boot monogram.
-   Done in CSS rather than through framer-motion's pathLength: pathLength
-   support varies by shape, and a mark that silently fails to draw is the
-   one thing this sequence cannot afford. pathLength="1" normalises every
-   shape's length to 1, so one keyframe serves the rect and both strokes. */
-.mm-draw {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: mm-draw var(--draw, 0.7s) cubic-bezier(0.22, 0.61, 0.36, 1) var(--draw-delay, 0s) forwards;
+/* Boot sequence.
+   The rail ticks grow from the baseline; the real hero portrait is held
+   back by an attribute on <html> so the flying one can land on top of it
+   without the two being visible at once. */
+.mm-tick {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  animation: mm-tick 220ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--draw-delay, 0s) forwards;
 }
 
-@keyframes mm-draw {
-  to { stroke-dashoffset: 0; }
+@keyframes mm-tick {
+  to { transform: scaleY(1); }
 }
+
+[data-booting] [data-hero-portrait] { opacity: 0; }
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

@@ -9,8 +9,10 @@
    same pass, before BootSequence has marked the session, so they see
    the same value. */
 
-export const BOOT_MS = 1770; // HOLD + WIPE in BootSequence
-export const SEEN_KEY = "mm.booted";
+/* When the overlay's ground has lifted far enough for the hero beneath to
+   be worth watching. Shorter than the full sequence on purpose: the
+   portrait is still in flight while the text below it arrives. */
+export const HERO_DELAY_MS = 1050;
 
 export const prefersStill = () => {
   try {
@@ -34,12 +36,7 @@ const documentHidden = () => {
 /* The single answer both components rely on. Adding a condition here and
    not there is how the hero ends up waiting for an overlay that never
    plays, so every condition lives in this one function. */
-export const bootWillRun = () => {
-  if (prefersStill() || documentHidden()) return false;
-  try {
-    return sessionStorage.getItem(SEEN_KEY) !== "1";
-  } catch {
-    /* privacy modes throw on read; treat as a first visit */
-    return true;
-  }
-};
+/* Runs on every load rather than once per session. It earns that by
+   being short and by ending in a useful place: the portrait is put where
+   it belongs instead of a splash being taken away. */
+export const bootWillRun = () => !prefersStill() && !documentHidden();
