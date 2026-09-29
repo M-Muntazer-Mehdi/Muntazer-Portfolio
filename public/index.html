@@ -47,19 +47,22 @@
     <title>Muntazer Mehdi — Full-Stack Developer</title>
       <script>
       (function () {
-        try {
-          var t = localStorage.getItem("mm.theme");
-          if (t !== "light" && t !== "dark") {
+        /* A saved choice wins; otherwise follow the visitor's own system.
+           Each read is guarded separately: localStorage throws in some
+           privacy modes, and one failure there must not cost a light-mode
+           visitor their theme. */
+        var t = null, l = null;
+        try { t = localStorage.getItem("mm.theme"); } catch (e) {}
+        try { l = localStorage.getItem("mm.lens"); } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          try {
             t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-          }
-          var l = localStorage.getItem("mm.lens") || "fullstack";
-          document.documentElement.dataset.theme = t;
-          document.documentElement.dataset.lens = l;
-          document.documentElement.style.background = t === "dark" ? "#0A0C0B" : "#F6F5F1";
-        } catch (e) {
-          document.documentElement.dataset.theme = "dark";
-          document.documentElement.dataset.lens = "fullstack";
+          } catch (e) { t = "dark"; }
         }
+        document.documentElement.dataset.theme = t;
+        document.documentElement.dataset.lens = l || "fullstack";
+        /* must equal --paper, or the pre-paint fill seams against the page */
+        document.documentElement.style.background = t === "dark" ? "#090B0E" : "#F7F7F5";
       })();
     </script>
   </head>
