@@ -9,7 +9,9 @@
 /coverage
 
 # production
-# /build
+# Vercel runs `npm run build` itself, so a build committed here is
+# never served — it only goes stale and hides which commit is live.
+/build
 
 # misc
 .DS_Store
