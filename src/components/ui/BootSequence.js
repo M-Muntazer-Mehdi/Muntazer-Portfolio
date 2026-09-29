@@ -89,25 +89,45 @@ const BootSequence = () => {
 
     const fly = setTimeout(() => {
       const img = imgRef.current;
-      const target = document.querySelector("[data-hero-portrait]");
       const from = img && img.getBoundingClientRect();
-      const to = target && target.getBoundingClientRect();
 
-      /* Fly only to a destination that is on screen. On a narrow layout
-         the hero portrait sits below the fold, and flying there would
-         carry the image off the bottom and read as falling away. */
-      const landable =
-        to && to.width > 8 && to.top < window.innerHeight - 40 && to.bottom > 40;
+      /* Where the portrait goes depends on what is actually on screen.
+         The hero portrait is the real handover and is used whenever it is
+         visible. On a narrow layout it sits below the fold — 41px past
+         the bottom edge on a 375x812 screen — so flying there would
+         carry the image off the bottom and read as falling away. The
+         navbar monogram is on screen at every width, so the portrait
+         collapses into the mark instead. */
+      const onScreen = (el) => {
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        const visible =
+          r.width > 8 && r.top < window.innerHeight - 40 && r.bottom > 40;
+        return visible ? r : null;
+      };
 
-      if (img && from && from.width > 8 && to && to.width > 8) {
+      const hero = onScreen(document.querySelector("[data-hero-portrait]"));
+      const mark = onScreen(document.querySelector("[data-monogram]"));
+      const to = hero || mark;
+      const intoMark = !hero && Boolean(mark);
+      const ease = "cubic-bezier(0.62, 0.02, 0.24, 1)";
+
+      if (img && from && from.width > 8 && to) {
         const dx = to.left + to.width / 2 - (from.left + from.width / 2);
         const dy = to.top + to.height / 2 - (from.top + from.height / 2);
         const scale = to.width / from.width;
-        const ease = "cubic-bezier(0.62, 0.02, 0.24, 1)";
 
-        if (landable) {
+        if (intoMark) {
+          /* Collapsing into a 34px mark is better than a thirty-fold
+             reduction of a face: the likeness stops being legible long
+             before it arrives, so it fades over the back half of the
+             move rather than shrinking to a speck. */
+          img.style.transition =
+            `transform ${FLIGHT}ms ${ease}, ` +
+            `opacity ${Math.round(FLIGHT * 0.5)}ms ease ${Math.round(FLIGHT * 0.5)}ms`;
+          img.style.opacity = "0";
+        } else {
           img.style.transition = `transform ${FLIGHT}ms ${ease}`;
-          img.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`;
           /* the exact frame the copy comes to rest on the real one */
           img.addEventListener(
             "transitionend",
@@ -116,23 +136,16 @@ const BootSequence = () => {
             },
             { once: true }
           );
-        } else {
-          /* Narrow layout: the hero portrait sits below the fold, so there
-             is nothing on screen to land on. Flying the whole way would
-             carry the image off the bottom and read as falling. Instead it
-             settles — takes the size it will have in the page, leans a
-             capped distance in the right direction, and hands over to the
-             page as the ground lifts. */
-          const lean = Math.min(window.innerHeight * 0.16, 130);
-          const k = Math.min(1, lean / Math.max(1, Math.abs(dy)));
-          img.style.transition =
-            `transform ${FLIGHT}ms ${ease}, ` +
-            `opacity ${Math.round(FLIGHT * 0.55)}ms ease ${Math.round(FLIGHT * 0.45)}ms`;
-          img.style.transform =
-            `translate(calc(-50% + ${(dx * k).toFixed(1)}px), calc(-50% + ${(dy * k).toFixed(1)}px)) scale(${scale})`;
-          img.style.opacity = "0";
         }
+
+        img.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`;
+      } else if (img) {
+        /* Neither target on screen. Should not happen while the navbar is
+           sticky, but a bare pop-out is not an acceptable failure. */
+        img.style.transition = `opacity ${Math.round(FLIGHT * 0.5)}ms ease`;
+        img.style.opacity = "0";
       }
+
       setFlying(true);
     }, LIFT);
 

@@ -8,6 +8,8 @@ const Monogram = ({ size = 34 }) => (
     height={size}
     viewBox="0 0 32 32"
     fill="none"
+    /* the boot sequence measures this when the hero portrait is off screen */
+    data-monogram=""
     role="img"
     aria-label="Muntazer Mehdi"
     className="shrink-0"
