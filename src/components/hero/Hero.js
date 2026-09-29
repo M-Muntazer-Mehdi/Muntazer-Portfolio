@@ -8,10 +8,6 @@ import { useApp } from "../../context/AppContext";
 import { LENSES, LEDGER, SOCIALS } from "../../data/lenses";
 import Portrait from "./Portrait";
 
-/* "framed" = the high-res shot cut from profilePhoto.png
-   "cutout"  = bannerImg.png, the suited transparent cut-out */
-const PORTRAIT_VARIANT = "cutout";
-
 const ease = [0.22, 0.61, 0.36, 1];
 
 const Hero = () => {
@@ -138,7 +134,7 @@ const Hero = () => {
           {/* ------------------------------------------------ portrait */}
           <div className="lgl:col-span-5">
             <div className="relative mx-auto w-full max-w-[340px] sml:max-w-[420px] lgl:ml-auto lgl:mr-0 lgl:max-w-[440px]">
-              <Portrait variant={PORTRAIT_VARIANT} lens={L} />
+              <Portrait lens={L} />
 
               {/* handwriting, tilted, sitting half outside the frame */}
               <div className="absolute -bottom-9 -left-4 flex items-end gap-1.5 lgl:-left-16">

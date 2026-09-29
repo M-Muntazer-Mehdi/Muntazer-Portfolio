@@ -1,7 +1,6 @@
 import React from "react";
 
 import useTilt from "../../hooks/useTilt";
-import framedSrc from "../../assets/images/portrait.jpg";
 import cutoutSrc from "../../assets/images/figure.png";
 
 /* Confirmed by Muntazer 2026-09-23: he is already in Saudi Arabia, in Madinah.
@@ -22,40 +21,6 @@ const at = (z, extra = "") => ({
   transformStyle: "preserve-3d",
 });
 
-/* Hairline planes receding behind the subject. Offset in pixels rather than
-   scaled, so they stay concentric with whatever shape they are given, and they
-   separate visibly as the card turns. */
-const Depth = ({ steps, radius = "rounded-[4px]" }) => (
-  <>
-    {steps.map(({ i, z, o }) => (
-      <div
-        key={z}
-        aria-hidden="true"
-        className={`absolute ${radius}`}
-        style={{ inset: `-${i}px`, ...at(z), border: "1px solid var(--hair)", opacity: o }}
-      />
-    ))}
-  </>
-);
-
-/* Machined corner marks, floated in front of the plate. */
-const Corners = ({ z = 40 }) => (
-  <div aria-hidden="true" className="pointer-events-none absolute -inset-4" style={at(z)}>
-    {[
-      "left-0 top-0 border-l border-t",
-      "right-0 top-0 border-r border-t",
-      "left-0 bottom-0 border-l border-b",
-      "right-0 bottom-0 border-r border-b",
-    ].map((pos) => (
-      <span
-        key={pos}
-        className={`absolute h-3.5 w-3.5 ${pos}`}
-        style={{ borderColor: "var(--accent)" }}
-      />
-    ))}
-  </div>
-);
-
 const Chip = ({ children, className = "", z = 62 }) => (
   <div
     className={`absolute ${className}`}
@@ -70,86 +35,6 @@ const Chip = ({ children, className = "", z = 62 }) => (
   </div>
 );
 
-/* ---------------------------------------------------------------- framed */
-const Framed = ({ lens }) => {
-  const { sceneRef, cardRef } = useTilt({ max: 6 });
-
-  return (
-    <div ref={sceneRef} className="relative" style={scene}>
-      <div ref={cardRef} className="relative" style={card}>
-        <Depth
-          steps={[
-            { i: 34, z: -116, o: 0.22 },
-            { i: 20, z: -74, o: 0.38 },
-            { i: 9, z: -36, o: 0.58 },
-          ]}
-        />
-
-        <div
-          aria-hidden="true"
-          className="absolute -inset-2.5 rounded-[4px] transition-colors duration-700"
-          style={{
-            ...at(-20),
-            background: "var(--accent-soft)",
-            border: "1px solid var(--accent)",
-          }}
-        />
-
-        <figure
-          className="relative overflow-hidden rounded-[3px]"
-          style={{
-            ...at(0),
-            border: "1px solid var(--hair-hard)",
-            boxShadow: "var(--plate), inset 0 1px 0 var(--edge)",
-            background: "var(--surface)",
-          }}
-        >
-          <div className="relative aspect-[821/1170]">
-            <img
-              src={framedSrc}
-              alt="Muntazer Mehdi"
-              width={821}
-              height={1170}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 mix-blend-color transition-colors duration-700"
-              style={{ background: "var(--accent)", opacity: 0.14 }}
-            />
-            {/* specular band, slides with the tilt */}
-            <div
-              aria-hidden="true"
-              className="absolute -inset-x-1/2 inset-y-0 mix-blend-soft-light"
-              style={{
-                background:
-                  "linear-gradient(104deg, transparent 38%, var(--sheen) 50%, transparent 62%)",
-                transform: "translateX(calc(var(--px, 0) * 22%))",
-              }}
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/85 via-black/35 to-transparent"
-            />
-            <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
-              <span className={`${capClass} leading-relaxed text-white/90`}>
-                {PLACE}
-                <br />
-                {TZ}
-              </span>
-              <span className={`${capClass} text-white/90`}>
-                {lens.index} / {lens.tab}
-              </span>
-            </figcaption>
-          </div>
-        </figure>
-
-        <Corners />
-        <Chip className="-left-6 top-10 hidden lgl:block">{lens.label}</Chip>
-      </div>
-    </div>
-  );
-};
 
 /* The plate the figure stands on.
    An asymmetric chamfer — cut at top-left and bottom-right only — with a
@@ -278,7 +163,6 @@ const Cutout = ({ lens }) => {
   );
 };
 
-const Portrait = ({ variant = "framed", lens }) =>
-  variant === "cutout" ? <Cutout lens={lens} /> : <Framed lens={lens} />;
+const Portrait = ({ lens }) => <Cutout lens={lens} />;
 
 export default Portrait;
