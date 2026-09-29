@@ -2,6 +2,7 @@ import React from "react";
 
 import { AppProvider } from "./context/AppContext";
 import Grain from "./components/ui/Grain";
+import BootSequence from "./components/ui/BootSequence";
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./components/hero/Hero";
 import SelectedWork from "./components/work/SelectedWork";
@@ -17,6 +18,7 @@ import Footer from "./components/footer/Footer";
 function App() {
   return (
     <AppProvider>
+      <BootSequence />
       <Grain />
       <div className="min-h-screen bg-paper text-ink">
         <Navbar />

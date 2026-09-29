@@ -151,12 +151,52 @@ body {
   .text-pretty  { text-wrap: pretty; }
 }
 
+/* Hero entrance.
+   ------------------------------------------------------------------
+   Each keyframe declares only `from`, so the resting state is the
+   element's natural one: if the animation never runs — no CSS animation
+   support, a suspended tab, a script error — the text is simply there.
+   An entrance that can hide the <h1> when it fails is not worth having.
+
+   `backwards` fill holds the start state through the delay, so nothing
+   flashes into place before its turn. */
+.mm-in {
+  animation-duration: var(--d, 0.6s);
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation-delay: var(--delay, 0s);
+  animation-fill-mode: backwards;
+}
+
+.mm-rise { animation-name: mm-rise; }
+.mm-fade { animation-name: mm-fade; }
+.mm-rule { animation-name: mm-rule; transform-origin: left; }
+
+@keyframes mm-rise { from { transform: translateY(108%); } }
+@keyframes mm-fade { from { opacity: 0; transform: translateY(10px); } }
+@keyframes mm-rule { from { transform: scaleX(0); } }
+
+/* Stroke drawing for the boot monogram.
+   Done in CSS rather than through framer-motion's pathLength: pathLength
+   support varies by shape, and a mark that silently fails to draw is the
+   one thing this sequence cannot afford. pathLength="1" normalises every
+   shape's length to 1, so one keyframe serves the rect and both strokes. */
+.mm-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: mm-draw var(--draw, 0.7s) cubic-bezier(0.22, 0.61, 0.36, 1) var(--draw-delay, 0s) forwards;
+}
+
+@keyframes mm-draw {
+  to { stroke-dashoffset: 0; }
+}
+
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .001ms !important;
+    animation-delay: 0s !important;
     transition-duration: .001ms !important;
   }
 }

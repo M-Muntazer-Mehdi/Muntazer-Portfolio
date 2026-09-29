@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { FiArrowDown, FiArrowUpRight, FiDownload } from "react-icons/fi";
@@ -7,10 +7,18 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { useApp } from "../../context/AppContext";
 import { LENSES, LEDGER, SOCIALS } from "../../data/lenses";
 import Portrait from "./Portrait";
+import { BOOT_MS, bootWillRun } from "../../lib/boot";
 
 const ease = [0.22, 0.61, 0.36, 1];
 
+/* Step n of the entrance, offset from --t0 so the whole run shifts by one
+   value when the boot overlay is playing. */
+const STEP = 0.07;
+const at = (n) => ({ "--delay": `calc(var(--t0) + ${(n * STEP).toFixed(2)}s)` });
+
+
 const Hero = () => {
+  const [firstPaint] = useState(bootWillRun);
   const { lens } = useApp();
   const L = LENSES[lens];
 
@@ -60,32 +68,55 @@ const Hero = () => {
               </span>
             </div>
 
-            <motion.div
-              key={lens}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease }}
-            >
+            {/* Entrance is CSS, not JS: the resting state of every line is
+                visible, so a failed animation cannot swallow the headline.
+                `key` restarts the run when the lens changes. */}
+            <div key={lens} style={{ "--t0": `${firstPaint ? BOOT_MS / 1000 : 0}s` }}>
               <div className="mb-5 flex items-center gap-3">
-                <span className="font-mono text-[12.5px] text-accent">{L.index}</span>
-                <span className="font-mono text-[12.5px] text-faint">/</span>
-                <span className="tag">{L.eyebrow}</span>
-                <span className="h-px flex-1" style={{ background: "var(--hair)" }} />
+                <span className="mm-in mm-fade font-mono text-[12.5px] text-accent" style={at(0)}>
+                  {L.index}
+                </span>
+                <span className="mm-in mm-fade font-mono text-[12.5px] text-faint" style={at(1)}>
+                  /
+                </span>
+                <span className="mm-in mm-fade tag" style={at(2)}>
+                  {L.eyebrow}
+                </span>
+                {/* the rule draws itself across rather than fading in */}
+                <span
+                  className="mm-in mm-rule h-px flex-1"
+                  style={{ ...at(3), "--d": "0.7s", background: "var(--hair)" }}
+                />
               </div>
 
               <h1 className="font-display text-[clamp(2.7rem,7.4vw,5.3rem)] font-semibold leading-[0.93] tracking-tighter2 text-balance">
-                <span className="block">{L.headline[0]}</span>
-                <span className="block text-accent">{L.headline[1]}</span>
+                {/* each line is clipped by its parent and rises from the baseline */}
+                <span className="block overflow-hidden pb-[0.06em]">
+                  <span className="mm-in mm-rise block" style={{ ...at(3), "--d": "0.72s" }}>
+                    {L.headline[0]}
+                  </span>
+                </span>
+                <span className="block overflow-hidden pb-[0.06em]">
+                  <span className="mm-in mm-rise block text-accent" style={{ ...at(4), "--d": "0.72s" }}>
+                    {L.headline[1]}
+                  </span>
+                </span>
               </h1>
 
-              <p className="mt-6 max-w-[42ch] font-display text-[clamp(1.05rem,2.1vw,1.38rem)] font-medium leading-snug tracking-tight">
+              <p
+                className="mm-in mm-fade mt-6 max-w-[42ch] font-display text-[clamp(1.05rem,2.1vw,1.38rem)] font-medium leading-snug tracking-tight"
+                style={at(6)}
+              >
                 {L.sub}
               </p>
 
-              <p className="mt-5 max-w-[56ch] text-[15px] leading-[1.75] text-muted text-pretty">
+              <p
+                className="mm-in mm-fade mt-5 max-w-[56ch] text-[15px] leading-[1.75] text-muted text-pretty"
+                style={at(7)}
+              >
                 {L.blurb}
               </p>
-            </motion.div>
+            </div>
 
             {/* actions */}
             <div className="mt-9 flex flex-wrap items-center gap-3">
