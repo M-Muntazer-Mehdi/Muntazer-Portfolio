@@ -125,15 +125,18 @@ const BootSequence = () => {
              reduction of a face: the likeness stops being legible long
              before it arrives, so it fades over the back half of the
              move rather than shrinking to a speck. */
+          /* The copy is gone by three quarters of the way, so the last
+             stretch belongs to the mark settling rather than to two
+             things cross-fading over each other. */
           img.style.transition =
             `transform ${FLIGHT}ms ${ease}, ` +
-            `opacity ${Math.round(FLIGHT * 0.5)}ms ease ${Math.round(FLIGHT * 0.5)}ms`;
+            `opacity ${Math.round(FLIGHT * 0.45)}ms ease ${Math.round(FLIGHT * 0.3)}ms`;
           img.style.opacity = "0";
           /* the mark keeps the face from here on, so the flight ends in
              something that stays rather than simply disappearing */
           keep = setTimeout(
             () => root.setAttribute("data-mark-portrait", ""),
-            Math.round(FLIGHT * 0.55)
+            Math.round(FLIGHT * 0.42)
           );
         } else {
           img.style.transition = `transform ${FLIGHT}ms ${ease}`;
