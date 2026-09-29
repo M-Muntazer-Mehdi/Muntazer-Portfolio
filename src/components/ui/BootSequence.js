@@ -1,28 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import { useApp } from "../../context/AppContext";
 import { bootWillRun } from "../../lib/boot";
-import { PROOFS } from "../../assets/proofs";
+import { LENSES, LENS_ORDER } from "../../data/lenses";
 import cutoutSrc from "../../assets/images/figure.png";
 
-/* The boot sequence: a contact sheet developing.
+/* The boot sequence: choosing a lens, then pulling focus.
    ------------------------------------------------------------------
-   The page opens as what the rest of it is designed to look like — a
-   contact sheet. Thirteen proofs expose in reading order, the sheet
-   clears, and the portrait rises and flies to the exact position it
-   occupies in the hero, where the real element takes over.
+   One continuous idea rather than a run of separate beats. The portrait
+   opens soft and colourless, as if the shot has not been focused yet.
+   The measurement rail below it is the focus scale: a marker travels it
+   while the four lens names step past, and as the marker settles the
+   image racks into focus and its colour returns. Then the ground lifts
+   and the portrait flies to the position it occupies in the hero, where
+   the real element takes over.
 
-   Cost was the whole question here. Loading thirteen full covers before
-   first paint is 1.9 MB spent on a recruiter's first second, so the
-   sheet uses 256px proofs instead: 91 KB for the set, and a proof print
-   is what belongs on a contact sheet anyway.
+   It uses the two things that are actually particular to this site —
+   the lens system and the measurement rail — so it could not be lifted
+   onto anyone else's page.
 
-   Two things it must never do:
-
-     · wait on an image. The timeline is fixed and the frames are drawn
-       as empty plates from the first frame; a proof appears when it has
-       decoded, and a slow one simply leaves its plate empty.
-     · block the document. The page is mounted underneath the whole
-       time, so a crawler and a screen reader read the page, not this.
+   No images beyond the portrait, which the hero needs anyway: nothing
+   is fetched for the sake of the sequence.
 
    The flight is a FLIP against a measured destination rather than a
    hard-coded one, which keeps it correct at any breakpoint or zoom.
@@ -30,16 +28,12 @@ import cutoutSrc from "../../assets/images/figure.png";
    layout animations are the two things in this codebase that have
    already failed, and a sequence that cannot leave is worse than none. */
 
-/* Timeline. The portrait must not arrive while the sheet is still on
-   screen — at full size it covers the middle three frames — so it only
-   emerges once clearing is under way. Keyframe delays in index.css are
-   tuned against these numbers; move one and check the other. */
-const EXPOSE = 34; // between proofs, in reading order
-const SHEET_HOLD = 780; // sheet complete before it starts clearing
-const CLEAR = 18; // between proofs on the way out
-const LIFT = 1300; // portrait begins its flight
-const FLIGHT = 740; // must match the transition below
+const STEP = 200; // per lens name
+const RACK = LENS_ORDER.length * STEP; // focus is pulled across the whole sweep
+const LIFT = RACK + 260; // settle, then fly
+const FLIGHT = 720; // must match the transition below
 const DONE = LIFT + FLIGHT;
+const TICKS = 32;
 
 /* Registration crosshair: the mark a printer lines plates up against. */
 const Registration = ({ className, delay, gone }) => (
@@ -52,7 +46,7 @@ const Registration = ({ className, delay, gone }) => (
     className={`absolute ${className}`}
     style={{
       opacity: gone ? 0 : 1,
-      transition: `opacity 300ms ease ${gone ? 0 : delay}ms`,
+      transition: `opacity 280ms ease ${gone ? 0 : delay}ms`,
     }}
   >
     <path d="M13 0v9M13 17v9M0 13h9M17 13h9" stroke="var(--hair-hard)" strokeWidth="1" />
@@ -61,8 +55,18 @@ const Registration = ({ className, delay, gone }) => (
 );
 
 const BootSequence = () => {
+  const { lens: current } = useApp();
+  /* The sweep has to finish on the lens the page is actually about to
+     show, or the sequence promises one thing and reveals another. Fixed
+     at mount so a lens change mid-flight cannot reorder it. */
+  const [order] = useState(() => {
+    /* LENSES is keyed by id, so the running order comes from LENS_ORDER */
+    const landing = LENS_ORDER.includes(current) ? current : LENS_ORDER[0];
+    return [...LENS_ORDER.filter((id) => id !== landing), landing];
+  });
   const [active, setActive] = useState(bootWillRun);
-  const [phase, setPhase] = useState("expose"); // expose → clear → fly
+  const [step, setStep] = useState(0);
+  const [flying, setFlying] = useState(false);
   const imgRef = useRef(null);
 
   useEffect(() => {
@@ -74,7 +78,8 @@ const BootSequence = () => {
     /* holds the real portrait back until this one lands on top of it */
     root.setAttribute("data-booting", "");
 
-    const clear = setTimeout(() => setPhase("clear"), SHEET_HOLD);
+    /* the sweep: one lens name per STEP, ending on the last */
+    const sweep = order.map((_, i) => setTimeout(() => setStep(i), i * STEP));
 
     const fly = setTimeout(() => {
       const img = imgRef.current;
@@ -95,7 +100,7 @@ const BootSequence = () => {
         img.style.transition = `transform ${FLIGHT}ms cubic-bezier(0.62, 0.02, 0.24, 1)`;
         img.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`;
       }
-      setPhase("fly");
+      setFlying(true);
     }, LIFT);
 
     const end = setTimeout(() => {
@@ -104,21 +109,22 @@ const BootSequence = () => {
     }, DONE);
 
     return () => {
-      [clear, fly, end].forEach(clearTimeout);
+      [...sweep, fly, end].forEach(clearTimeout);
       root.removeAttribute("data-booting");
       document.body.style.overflow = overflow;
     };
-  }, [active]);
+  }, [active, order]);
 
   if (!active) return null;
 
-  const clearing = phase !== "expose";
-  const flying = phase === "fly";
+  const lens = LENSES[order[step]];
+  /* how far along the focus pull we are, 0 to 1 */
+  const progress = order.length > 1 ? step / (order.length - 1) : 1;
 
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 z-[120] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[120] flex flex-col items-center justify-center overflow-hidden"
       style={{
         /* the ground lifts before the portrait lands, so the flight
            finishes over the real page rather than over a blank sheet */
@@ -127,48 +133,10 @@ const BootSequence = () => {
         transition: `opacity ${Math.round(FLIGHT * 0.5)}ms ease`,
       }}
     >
-      <Registration className="left-7 top-7" delay={40} gone={clearing} />
-      <Registration className="right-7 top-7" delay={100} gone={clearing} />
-      <Registration className="bottom-7 left-7" delay={160} gone={clearing} />
-      <Registration className="bottom-7 right-7" delay={220} gone={clearing} />
-
-      {/* the sheet */}
-      <div className="flex max-w-[min(92vw,1080px)] flex-wrap items-start justify-center gap-x-4 gap-y-5">
-        {PROOFS.map((src, i) => (
-          <div
-            key={i}
-            className="mm-proof"
-            style={{
-              width: "min(19vw, 168px)",
-              /* exposing runs forwards, clearing runs backwards, so the
-                 sheet unmakes itself in the order it was made */
-              "--in": `${i * EXPOSE}ms`,
-              "--out": `${(PROOFS.length - 1 - i) * CLEAR}ms`,
-              opacity: clearing ? 0 : undefined,
-              transform: clearing ? "translateY(14px)" : undefined,
-              transition: clearing
-                ? `opacity 260ms ease var(--out), transform 260ms ease var(--out)`
-                : undefined,
-            }}
-          >
-            <div
-              className="relative w-full overflow-hidden"
-              style={{ aspectRatio: "16 / 10", border: "1px solid var(--hair-hard)" }}
-            >
-              <img
-                src={src}
-                alt=""
-                loading="eager"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-            <span className="mt-1.5 block font-mono text-[10.5px] tracking-[0.18em] text-faint">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-          </div>
-        ))}
-      </div>
+      <Registration className="left-7 top-7" delay={40} gone={flying} />
+      <Registration className="right-7 top-7" delay={90} gone={flying} />
+      <Registration className="bottom-7 left-7" delay={140} gone={flying} />
+      <Registration className="bottom-7 right-7" delay={190} gone={flying} />
 
       <img
         ref={imgRef}
@@ -180,17 +148,61 @@ const BootSequence = () => {
         style={{
           /* larger than its destination, so the flight carries a real
              scale change rather than a flat slide */
-          height: "min(62vh, 560px)",
+          height: "min(58vh, 520px)",
           width: "auto",
           transform: "translate(-50%, -50%)",
           transformOrigin: "center",
-          filter: "saturate(0.92) contrast(1.04)",
+          /* the rack: soft and colourless, resolving as the sweep runs */
+          filter: `saturate(${(0.08 + progress * 0.84).toFixed(2)}) contrast(1.04) blur(${((1 - progress) * 13).toFixed(1)}px)`,
+          transition: `filter ${STEP}ms linear`,
           maskImage:
             "linear-gradient(to bottom, #000 78%, rgba(0,0,0,0.45) 92%, transparent 100%)",
           WebkitMaskImage:
             "linear-gradient(to bottom, #000 78%, rgba(0,0,0,0.45) 92%, transparent 100%)",
         }}
       />
+
+      {/* the focus scale, and the lens being selected on it */}
+      <div
+        className="absolute bottom-[13vh] left-1/2 w-[min(78vw,520px)] -translate-x-1/2"
+        style={{ opacity: flying ? 0 : 1, transition: "opacity 240ms ease" }}
+      >
+        <div className="mb-3 flex items-baseline justify-between">
+          <span className="font-mono text-[12px] tracking-[0.2em] text-accent">
+            {lens.index}
+          </span>
+          <span className="font-mono text-[12px] uppercase tracking-[0.3em] text-ink">
+            {lens.tab}
+          </span>
+          <span className="font-mono text-[12px] tracking-[0.2em] text-faint">
+            {String(Math.round(progress * 100)).padStart(3, "0")}
+          </span>
+        </div>
+
+        <div className="relative flex items-end justify-between" style={{ height: 14 }}>
+          {Array.from({ length: TICKS }).map((_, i) => (
+            <span
+              key={i}
+              className="w-px"
+              style={{
+                height: i % 8 === 0 ? 14 : 7,
+                background:
+                  i / (TICKS - 1) <= progress ? "var(--accent)" : "var(--hair-hard)",
+                transition: "background-color 160ms linear",
+              }}
+            />
+          ))}
+          {/* the marker travelling the scale */}
+          <span
+            className="absolute bottom-[-5px] h-[22px] w-px"
+            style={{
+              left: `${progress * 100}%`,
+              background: "var(--ink)",
+              transition: `left ${STEP}ms cubic-bezier(0.62, 0.02, 0.24, 1)`,
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

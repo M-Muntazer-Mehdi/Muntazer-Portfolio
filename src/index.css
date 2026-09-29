@@ -176,24 +176,13 @@ body {
 @keyframes mm-rule { from { transform: scaleX(0); } }
 
 /* Boot sequence.
-   Proofs expose one after another; the portrait rises behind them. The
-   real hero portrait is held back by an attribute on <html> so the
-   flying one can land on it without both being visible at once. */
-.mm-proof {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: mm-expose 320ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--in, 0s) forwards;
-}
-
-@keyframes mm-expose {
-  to { opacity: 1; transform: none; }
-}
-
+   The portrait fades up once, then the rack-focus is driven from React
+   through the inline filter, so there is nothing here to keep in step
+   with the timeline. The real hero portrait is held back by an attribute
+   on <html> so the flying one can land on it without both showing. */
 .mm-boot-portrait {
   opacity: 0;
-  /* 820ms: the sheet has begun to clear. Earlier and the portrait
-     lands on top of frames that are still exposing. */
-  animation: mm-emerge 420ms cubic-bezier(0.22, 0.61, 0.36, 1) 820ms forwards;
+  animation: mm-emerge 420ms cubic-bezier(0.22, 0.61, 0.36, 1) 60ms forwards;
 }
 
 @keyframes mm-emerge {
