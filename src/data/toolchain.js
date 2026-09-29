@@ -90,6 +90,25 @@ export const TOOLCHAIN = [
   },
 ];
 
+/* Practices.
+   ------------------------------------------------------------------
+   Applied throughout the work above, but deliberately uncounted: these
+   are not packages a dependency scan can find, so giving them figures
+   would mean inventing them. Listed, not measured. */
+
+export const PRACTICES = {
+  label: "Practices",
+  note: "Applied across the work above",
+  items: [
+    "CI/CD",
+    "Automated testing",
+    "Authentication & authorisation",
+    "RBAC & row-level security",
+    "Cloud deployment",
+    "REST API design",
+  ],
+};
+
 /* Foundations.
    ------------------------------------------------------------------
    Coursework, not shipped products — kept out of the counts above so

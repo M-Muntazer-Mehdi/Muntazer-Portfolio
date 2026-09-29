@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
-import { TOOLCHAIN, FOUNDATIONS } from "../../data/toolchain";
+import { TOOLCHAIN, PRACTICES, FOUNDATIONS } from "../../data/toolchain";
 
 const ease = [0.22, 0.61, 0.36, 1];
 
@@ -89,6 +89,24 @@ const Toolchain = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* practices — listed without figures: a dependency scan cannot count them */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.4, ease }}
+          className="flex flex-col gap-x-6 gap-y-2 py-6 sml:flex-row sml:items-baseline"
+          style={{ borderTop: "1px solid var(--hair)" }}
+        >
+          <p className="tag shrink-0">{PRACTICES.label}</p>
+          <p className="flex-1 text-[14.5px] leading-relaxed text-muted">
+            {PRACTICES.items.join("  \u00b7  ")}
+          </p>
+          <p className="shrink-0 font-mono text-[12.5px] uppercase tracking-[0.14em] text-faint">
+            {PRACTICES.note}
+          </p>
+        </motion.div>
 
         {/* foundations — dated on purpose, so nothing here reads as recent */}
         <motion.div
