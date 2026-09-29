@@ -97,7 +97,12 @@ const Contact = () => {
       .finally(() => setSending(false));
   };
 
-  const Label = ({ children }) => <p className="tag">{children}</p>;
+  const Label = ({ children, htmlFor }) =>
+    htmlFor ? (
+      <label htmlFor={htmlFor} className="tag block">{children}</label>
+    ) : (
+      <p className="tag">{children}</p>
+    );
 
   return (
     <section id="contact" className="relative">
@@ -202,13 +207,13 @@ const Contact = () => {
           >
             <form className="flex w-full flex-col gap-4 py-2 lgl:gap-6 lgl:py-5" noValidate onSubmit={handleSend}>
               {errMsg && (
-                <p className="px-4 py-3 text-center text-[15px]"
+                <p role="alert" className="px-4 py-3 text-center text-[15px]"
                    style={{ border: "1px solid var(--accent)", color: "var(--accent)" }}>
                   {errMsg}
                 </p>
               )}
               {successMsg && (
-                <p className="px-4 py-3 text-center text-[15px]"
+                <p role="status" className="px-4 py-3 text-center text-[15px]"
                    style={{ border: "1px solid var(--accent)", color: "var(--accent)" }}>
                   {successMsg}
                 </p>
@@ -216,36 +221,41 @@ const Contact = () => {
 
               <div className="flex w-full flex-col gap-4 lgl:flex-row lgl:gap-10">
                 <div className="flex w-full flex-col gap-3 lgl:w-1/2">
-                  <Label>Your name</Label>
-                  <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}
+                  <Label htmlFor="cf-name">Your name</Label>
+                  <input id="cf-name" name="name" autoComplete="name"
+                         type="text" value={username} onChange={(e) => setUsername(e.target.value)}
                          className="h-12 w-full px-4 text-[14.5px] outline-none"
                          style={inputStyle(errMsg === "Username is required!")} />
                 </div>
                 <div className="flex w-full flex-col gap-3 lgl:w-1/2">
-                  <Label>Phone number <span style={{ color: "var(--faint)" }}>(optional)</span></Label>
-                  <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
+                  <Label htmlFor="cf-phone">Phone number <span style={{ color: "var(--faint)" }}>(optional)</span></Label>
+                  <input id="cf-phone" name="phone" autoComplete="tel"
+                         type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
                          className="h-12 w-full px-4 text-[14.5px] outline-none"
                          style={inputStyle(false)} />
                 </div>
               </div>
 
               <div className="flex flex-col gap-3">
-                <Label>Email</Label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                <Label htmlFor="cf-email">Email</Label>
+                <input id="cf-email" name="email" autoComplete="email"
+                       type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                        className="h-12 w-full px-4 text-[14.5px] outline-none"
                        style={inputStyle(errMsg === "Please give your Email!" || errMsg === "Give a valid Email!")} />
               </div>
 
               <div className="flex flex-col gap-3">
-                <Label>Subject</Label>
-                <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)}
+                <Label htmlFor="cf-subject">Subject</Label>
+                <input id="cf-subject" name="subject" autoComplete="off"
+                       type="text" value={subject} onChange={(e) => setSubject(e.target.value)}
                        className="h-12 w-full px-4 text-[14.5px] outline-none"
                        style={inputStyle(errMsg === "Please give your Subject!")} />
               </div>
 
               <div className="flex flex-col gap-3">
-                <Label>Message</Label>
-                <textarea rows={8} value={message} onChange={(e) => setMessage(e.target.value)}
+                <Label htmlFor="cf-message">Message</Label>
+                <textarea id="cf-message" name="message"
+                          rows={8} value={message} onChange={(e) => setMessage(e.target.value)}
                           className="w-full resize-y px-4 py-3 text-[14.5px] leading-relaxed outline-none"
                           style={inputStyle(errMsg === "Message is required!")} />
               </div>
