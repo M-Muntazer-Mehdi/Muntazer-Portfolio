@@ -107,6 +107,7 @@ const Hero = () => {
 
               <a
                 href={`${process.env.PUBLIC_URL}/Muntazer-Mehdi-CV.pdf`}
+                download="Muntazer-Mehdi-CV.pdf"
                 className="group flex items-center gap-2 rounded-full px-5 py-3 text-[14.5px] font-medium text-ink transition-colors duration-200 hover:text-accent"
                 style={{ border: "1px solid var(--hair-hard)" }}
               >
