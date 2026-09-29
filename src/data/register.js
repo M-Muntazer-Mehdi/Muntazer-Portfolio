@@ -35,8 +35,8 @@ export const PROJECT_REGISTER = [
   {
     n: "03",
     name: "ChatOn",
-    what: "React Native chat client",
-    client: "Alliance Tech",
+    what: "Reusable React Native chat client, sold to two clients and integrated into their own apps",
+    client: "Own product",
     year: "2025",
   },
   {
