@@ -32,6 +32,12 @@ const STEP = 200; // per lens name
 const RACK = LENS_ORDER.length * STEP; // focus is pulled across the whole sweep
 const LIFT = RACK + 260; // settle, then fly
 const FLIGHT = 720; // must match the transition below
+/* Fallback only. The handover normally runs off the flight's own
+   transitionend, which is frame-accurate; a timer cannot be, and
+   uncovering the real portrait even one frame after the overlay goes
+   leaves nothing drawn in its place, which reads as the hero image
+   arriving a beat behind everything else. */
+const HANDOVER = LIFT + FLIGHT - 40;
 const DONE = LIFT + FLIGHT;
 const TICKS = 32;
 
@@ -99,17 +105,23 @@ const BootSequence = () => {
         const scale = to.width / from.width;
         img.style.transition = `transform ${FLIGHT}ms cubic-bezier(0.62, 0.02, 0.24, 1)`;
         img.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`;
+        /* the exact frame the copy comes to rest on the real one */
+        img.addEventListener(
+          "transitionend",
+          (e) => {
+            if (e.propertyName === "transform") root.removeAttribute("data-booting");
+          },
+          { once: true }
+        );
       }
       setFlying(true);
     }, LIFT);
 
-    const end = setTimeout(() => {
-      root.removeAttribute("data-booting");
-      setActive(false);
-    }, DONE);
+    const handover = setTimeout(() => root.removeAttribute("data-booting"), HANDOVER);
+    const end = setTimeout(() => setActive(false), DONE);
 
     return () => {
-      [...sweep, fly, end].forEach(clearTimeout);
+      [...sweep, fly, handover, end].forEach(clearTimeout);
       root.removeAttribute("data-booting");
       document.body.style.overflow = overflow;
     };
