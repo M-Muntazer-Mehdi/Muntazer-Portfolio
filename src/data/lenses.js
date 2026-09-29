@@ -79,6 +79,8 @@ export const SOCIALS = {
   github: "https://github.com/M-Muntazer-Mehdi",
   linkedin: "https://www.linkedin.com/in/m-muntazer-mehdi/",
   email: "mailto:muntazer.mehdi.rizvi@gmail.com",
+  /* wa.me takes digits only — no +, spaces or dashes */
+  whatsapp: "https://wa.me/966572176326",
 };
 
 /* Every id here must exist as a <section id> — a nav item pointing at a

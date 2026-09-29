@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 import { useApp } from "../../context/AppContext";
 import portrait from "../../assets/images/contact-portrait.jpg";
@@ -13,8 +13,10 @@ const ease = [0.22, 0.61, 0.36, 1];
    EmailJS dashboard, which must name muntazermehdi.com once deployed. */
 const EMAILJS = { service: "service_whzs729", template: "template_phpruhe", publicKey: "MvDG1lVRxtG2wyOSC" };
 const EMAIL = "muntazer.mehdi.rizvi@gmail.com";
+const WHATSAPP = { display: "+966 57 217 6326", wa: "966572176326" };
 
 const SOCIAL = [
+  { icon: <FaWhatsapp />, href: `https://wa.me/${WHATSAPP.wa}`, label: "WhatsApp" },
   { icon: <FaGithub />, href: "https://github.com/M-Muntazer-Mehdi", label: "GitHub" },
   { icon: <FaLinkedinIn />, href: "https://www.linkedin.com/in/m-muntazer-mehdi/", label: "LinkedIn" },
   { icon: <FaInstagram />, href: "https://www.instagram.com/triple_m.r/", label: "Instagram" },
@@ -154,6 +156,17 @@ const Contact = () => {
                 Email:
                 <a href={`mailto:${EMAIL}`} className="break-all text-accent underline-offset-4 hover:underline">
                   {EMAIL}
+                </a>
+              </p>
+              <p className="flex flex-wrap items-center gap-x-2 text-[15px] text-muted">
+                WhatsApp:
+                <a
+                  href={`https://wa.me/${WHATSAPP.wa}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent underline-offset-4 hover:underline"
+                >
+                  {WHATSAPP.display}
                 </a>
               </p>
             </div>

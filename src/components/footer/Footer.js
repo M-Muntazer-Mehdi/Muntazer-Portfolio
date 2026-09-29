@@ -21,6 +21,7 @@ const Footer = () => (
         <nav aria-label="Elsewhere" className="flex flex-wrap items-center gap-x-6 gap-y-2">
           {[
             ["Email", SOCIALS.email],
+            ["WhatsApp", SOCIALS.whatsapp],
             ["GitHub", SOCIALS.github],
             ["LinkedIn", SOCIALS.linkedin],
           ].map(([label, href]) => (
