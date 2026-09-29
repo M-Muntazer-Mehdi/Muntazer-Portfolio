@@ -306,6 +306,7 @@ export const WORK = [
   {
     id: "meetwise",
     flagship: false,
+    lensRank: { ai: 0 },   /* leads the AI lens */
     stats: [{ v: "4", k: "pipeline stages" }, { v: "2", k: "capture paths" }],
     hook: "Headless browser joins, Whisper and Gemini summarise",
     name: "Meetwise",

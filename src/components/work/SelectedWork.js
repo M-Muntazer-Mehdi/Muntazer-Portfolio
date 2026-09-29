@@ -10,10 +10,19 @@ const ease = [0.22, 0.61, 0.36, 1];
 
 /* Full Stack shows the flagships. The other lenses show genuine members of
    that discipline only. */
-const forLens = (lens) =>
-  lens === "fullstack"
-    ? WORK.filter((i) => i.flagship)
-    : WORK.filter((i) => i.lenses.includes(lens));
+/* File order is the default running order. An entry may override its place
+   in one lens with lensRank, which is how Meetwise leads the AI lens without
+   moving it up the master list. Sort is stable, so unranked items keep their
+   relative order. */
+const forLens = (lens) => {
+  const items =
+    lens === "fullstack"
+      ? WORK.filter((i) => i.flagship)
+      : WORK.filter((i) => i.lenses.includes(lens));
+  return [...items].sort(
+    (a, b) => (a.lensRank?.[lens] ?? 99) - (b.lensRank?.[lens] ?? 99)
+  );
+};
 
 /* ------------------------------------------------------------------ frame */
 /* A plate: image, a scrim that fuses it into the caption, two figures set on
