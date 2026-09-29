@@ -99,20 +99,39 @@ const BootSequence = () => {
       const landable =
         to && to.width > 8 && to.top < window.innerHeight - 40 && to.bottom > 40;
 
-      if (img && from && from.width > 8 && landable) {
+      if (img && from && from.width > 8 && to && to.width > 8) {
         const dx = to.left + to.width / 2 - (from.left + from.width / 2);
         const dy = to.top + to.height / 2 - (from.top + from.height / 2);
         const scale = to.width / from.width;
-        img.style.transition = `transform ${FLIGHT}ms cubic-bezier(0.62, 0.02, 0.24, 1)`;
-        img.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`;
-        /* the exact frame the copy comes to rest on the real one */
-        img.addEventListener(
-          "transitionend",
-          (e) => {
-            if (e.propertyName === "transform") root.removeAttribute("data-booting");
-          },
-          { once: true }
-        );
+        const ease = "cubic-bezier(0.62, 0.02, 0.24, 1)";
+
+        if (landable) {
+          img.style.transition = `transform ${FLIGHT}ms ${ease}`;
+          img.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`;
+          /* the exact frame the copy comes to rest on the real one */
+          img.addEventListener(
+            "transitionend",
+            (e) => {
+              if (e.propertyName === "transform") root.removeAttribute("data-booting");
+            },
+            { once: true }
+          );
+        } else {
+          /* Narrow layout: the hero portrait sits below the fold, so there
+             is nothing on screen to land on. Flying the whole way would
+             carry the image off the bottom and read as falling. Instead it
+             settles — takes the size it will have in the page, leans a
+             capped distance in the right direction, and hands over to the
+             page as the ground lifts. */
+          const lean = Math.min(window.innerHeight * 0.16, 130);
+          const k = Math.min(1, lean / Math.max(1, Math.abs(dy)));
+          img.style.transition =
+            `transform ${FLIGHT}ms ${ease}, ` +
+            `opacity ${Math.round(FLIGHT * 0.55)}ms ease ${Math.round(FLIGHT * 0.45)}ms`;
+          img.style.transform =
+            `translate(calc(-50% + ${(dx * k).toFixed(1)}px), calc(-50% + ${(dy * k).toFixed(1)}px)) scale(${scale})`;
+          img.style.opacity = "0";
+        }
       }
       setFlying(true);
     }, LIFT);
